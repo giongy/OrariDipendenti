@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="OrariDipendenti.BloccoEU"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:OrariDipendenti"
+             mc:Ignorable="d" Width="206.858" Height="180">
+
+    <Border BorderBrush="Black" BorderThickness="1" Padding="5" Margin="5">
+        <Grid x:Name="blocco">
+            <Grid.Background>
+                <SolidColorBrush Color="WhiteSmoke" Opacity="0.4" />
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="29" />
+                <RowDefinition Height="65" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="blocco_nome" Grid.Row="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="TextBlock" FontSize="22" TextAlignment="Center" Height="29" VerticalAlignment="Top" FontFamily="Calibri" LineStackingStrategy="BlockLineHeight" FontWeight="Thin" />
+
+            <Button x:Name="btn_entro" Grid.Row="1" Grid.Column="0" Click="button_Click_entra" HorizontalAlignment="Left" FontSize="18.667" FontWeight="ExtraLight" Margin="2,5" Cursor="Hand" Background="{x:Null}">
+                <StackPanel Orientation="Vertical" Height="49" Width="83">
+                    <TextBlock  FontSize="20" Height="29" VerticalAlignment="Center" Text="Entro" />
+                    <TextBlock x:Name="label_entrata" FontSize="12" Height="15" Text="entrata:"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btn_esco" Grid.Row="1" Grid.Column="1" Click="button_Click_esci" FontSize="18.667" FontWeight="ExtraLight" Margin="2,5" Cursor="Hand" HorizontalAlignment="Right" Background="{x:Null}">
+                <StackPanel Orientation="Vertical" Height="49" Width="83">
+                    <TextBlock  FontSize="20" Height="29" VerticalAlignment="Center" Text="Esco" TextAlignment="Right" Margin="0,0,5,0" />
+                    <TextBlock x:Name="label_uscita" FontSize="12" Height="15" Text="Uscita:" TextAlignment="Right" Margin="0,0,5,0" />
+                </StackPanel>
+            </Button>
+
+            <TextBlock Name="tb_blocco_note" Grid.Row="2" Grid.ColumnSpan="2"  TextTrimming="WordEllipsis" MaxWidth="180" PreviewMouseDown="blocco_nome_Copy_PreviewMouseDown" TextWrapping="Wrap" Text="For most controls, you set it's height and widthgdhgdhdhgh to Autnt." FontSize="16" FontWeight="ExtraLight" Cursor="Hand" Height="64" VerticalAlignment="Top">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="ToolTip">
+                            <Setter.Value>
+                                <ToolTip Width="300" Height="200" DataContext="{Binding Path=PlacementTarget, RelativeSource={x:Static RelativeSource.Self}}">
+                                    <TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
+                                </ToolTip>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+    </Border>
+</UserControl>

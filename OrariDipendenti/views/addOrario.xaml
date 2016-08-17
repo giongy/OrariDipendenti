@@ -1,0 +1,45 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OrariDipendenti"
+    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Name="Aggiungi_Orario" x:Class="OrariDipendenti.addOrario"
+        mc:Ignorable="d"
+        Title="Aggiungi Orario" Height="300" Width="352.667" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+    </Window.Resources>
+    <Grid x:Name="grid_orari_add" Margin="0,20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="48" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="SemiBold" Content="Aggiungi un nuovo orario" FontSize="24" />
+        <WrapPanel Grid.Row="4" Margin="0,0,27,10" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="138" Grid.Column="1">
+            <Button IsDefault="True" Command="Save" x:Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0" Content="_Ok">
+                <Button.CommandBindings>
+                    <CommandBinding Command="Save"
+                    Executed="Save_Executed" CanExecute="Save_CanExecute" />
+                </Button.CommandBindings>
+            </Button>
+            <Button IsCancel="True" MinWidth="60" Content="_Cancel" />
+        </WrapPanel>
+        <Label x:Name="label" Content="Nome Orario" Margin="0,10,10,13" Grid.Row="1" FontSize="11" FontWeight="Bold" HorizontalAlignment="Right" Width="85" />
+        <TextBox x:Name="nome_orario_add" Validation.Error="Validation_Error"
+                 Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=nome_orario, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
+                 Grid.Column="1" Margin="10,11,0,8" Grid.Row="1" TextWrapping="Wrap" HorizontalAlignment="Left" Width="136" />
+        <Label x:Name="label1" Target="{Binding ElementName=ore_settimanali_add}" Content="Ore settimanali" Margin="0,10,10,12.84" Grid.Row="2" d:LayoutOverrides="Height" FontSize="11" FontWeight="Bold" HorizontalAlignment="Right" />
+        <xctk:IntegerUpDown x:Name="ore_settimanali_add" Validation.Error="Validation_Error"
+                            Value="{Binding UpdateSourceTrigger=PropertyChanged, Path=ore_settimanali_orario,ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
+                            Grid.Column="1"   Margin="10,10,0,10" Grid.Row="2" FontWeight="Bold" FontSize="21.333" HorizontalAlignment="Left" Width="136">
+        </xctk:IntegerUpDown>
+    </Grid>
+</Window>

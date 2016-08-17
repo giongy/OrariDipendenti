@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OrariDipendenti.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FirstUserSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ciao</Value>
+    </Setting>
+    <Setting Name="admin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="userpw" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="powerpw" Type="System.String" Scope="User">
+      <Value Profile="(Default)">charles78</Value>
+    </Setting>
+    <Setting Name="nomeDB" Type="System.String" Scope="User">
+      <Value Profile="(Default)">orari_dipendenti_database.sqlite</Value>
+    </Setting>
+    <Setting Name="nomeDBAperto" Type="System.String" Scope="User">
+      <Value Profile="(Default)">default</Value>
+    </Setting>
+    <Setting Name="backupAuto" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UpgradeRequired" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="backupFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">no</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

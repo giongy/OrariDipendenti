@@ -1,0 +1,18 @@
+﻿da fare:
+
+aggiungere note almeno a main e sql
+
+
+
+alla fine
+
+- aggiungere menu:nuovo database (spostare il vecchio in cartella db archiviati)
+- creare progetto di aggiornamento database
+- sistemare gestione errori try catch
+
+
+
+
+
+
+
