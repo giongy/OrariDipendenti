@@ -94,17 +94,6 @@ namespace OrariDipendenti
             sched.ScheduleJob(job1, trigger_0100);
         }
 
-        private void mac()
-        {
-            var macAddr =
-    (
-        from nic in NetworkInterface.GetAllNetworkInterfaces()
-        where nic.OperationalStatus == OperationalStatus.Up
-        select nic.GetPhysicalAddress().ToString()
-    ).FirstOrDefault();
-            Debug.WriteLine("MAC " + macAddr);
-        }
-
         private void refresh_db()
         {
             aggiorna();
