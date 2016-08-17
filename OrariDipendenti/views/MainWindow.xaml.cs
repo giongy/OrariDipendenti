@@ -71,8 +71,6 @@ namespace OrariDipendenti
 
             popola_lista_dipendenti();
             Properties.Settings.Default.admin = false;
-
-            //mac();
         }
 
         public static MainWindow MyWindow
