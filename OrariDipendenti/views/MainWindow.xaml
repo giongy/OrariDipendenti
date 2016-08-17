@@ -15,7 +15,7 @@
     <Grid Name="mainGrid" Margin="0,5,0,0">
 
         <Grid.Background>
-            <ImageBrush ImageSource="../images/sfondoscuola0.jpg" Stretch="UniformToFill" />
+            <ImageBrush ImageSource="../images/sfondo-grande.jpg" Stretch="UniformToFill" />
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -156,10 +156,10 @@
                         <TabItem x:Name="tabitem_report_mensile" Header="Report Mensile" Margin="389.013,-9.333,-397.013,9.333" FontSize="10" Cursor="Hand" RenderTransformOrigin="0.5,0.5">
                             <TabItem.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleY="0.8" ScaleX="0.8"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
+                                    <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
+                                    <SkewTransform />
+                                    <RotateTransform />
+                                    <TranslateTransform />
                                 </TransformGroup>
                             </TabItem.RenderTransform>
 
@@ -198,10 +198,10 @@
                         <TabItem x:Name="tabitem_report_giornaliero" Header="Report Giornaliero" Margin="337.633,-9.331,-342.566,8.331" RenderTransformOrigin="1.056,0.6" FontSize="8" Cursor="Hand">
                             <TabItem.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleY="0.8" ScaleX="0.8"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
+                                    <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
+                                    <SkewTransform />
+                                    <RotateTransform />
+                                    <TranslateTransform />
                                 </TransformGroup>
                             </TabItem.RenderTransform>
                             <Grid x:Name="grid_report_giornaliero" Margin="0,-20,0,0">

@@ -14,7 +14,7 @@ namespace OrariDipendenti
             Document document = new Document();
 
             MigraDoc.DocumentObjectModel.Section section = document.AddSection();
-            Image image = section.AddImage("images/sfondopdf.jpg");
+            Image image = section.AddImage("images/sfondo-pdf2.jpg");
             image.Height = 80;
             image.Width = 600;
 

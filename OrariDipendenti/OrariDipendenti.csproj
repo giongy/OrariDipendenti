@@ -431,6 +431,12 @@
     <Resource Include="images\daisy2.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Content Include="images\sfondo-grande.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\sfondo-pdf2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\sfondopdf.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
