@@ -18,9 +18,6 @@ using System.Windows.Threading;
 
 namespace OrariDipendenti
 {
-    /// <summary>
-    /// Logica di interazione per MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : MetroWindow
     {
         private static MainWindow _myWindow;
