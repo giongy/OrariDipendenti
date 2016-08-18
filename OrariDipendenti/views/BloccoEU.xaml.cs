@@ -51,7 +51,8 @@ namespace OrariDipendenti
                     double seconds_uscita = TimeSpan.Parse(esci.Ora.ToString()).TotalSeconds;
                     if (seconds_uscita - seconds_entrata < 0) //se uscita è prima di entrata
                     {
-                        MessageBox.Show((seconds_uscita - seconds_entrata).ToString() + " Controlla l'ora di uscita: è precedente all'entrata");
+                        //MessageBox.Show((seconds_uscita - seconds_entrata).ToString() + " Controlla l'ora di uscita: è precedente all'entrata");
+                        MessageBox.Show("Controlla l'ora di uscita: è precedente all'entrata");
                     }
                     else //tutto ok, esco e faccio update della tabella
                     {
