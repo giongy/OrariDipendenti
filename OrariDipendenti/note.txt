@@ -1,6 +1,6 @@
 ﻿da fare:
 
-aggiungere note almeno a main e sql
+
 
 
 
