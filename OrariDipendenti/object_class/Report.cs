@@ -14,7 +14,7 @@
         public string report_pausa { get; set; }
         public string report_ore_lavorate { get; set; }
 
-        // public string report_verificato { get; set; }
+        public string report_modificato { get; set; }
         public string report_bancaore { get; set; }
 
         public string report_eu_id { get; set; }

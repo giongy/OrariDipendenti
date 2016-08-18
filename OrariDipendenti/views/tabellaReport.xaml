@@ -55,7 +55,7 @@
                         <Style TargetType="DataGridCell">
                             <Setter Property="ToolTip">
                                 <Setter.Value>
-                                    <ToolTip Width="300" Height="80">
+                                    <ToolTip Width="250" Height="70">
                                         <TextBlock Text="{Binding report_note}" TextWrapping="Wrap" />
                                     </ToolTip>
                                 </Setter.Value>
@@ -68,6 +68,7 @@
                 <DataGridTextColumn Header="Ore lavorate" Binding="{Binding report_ore_lavorate}" Width="110" />
                 <!--    <DataGridTextColumn Header="Approvato" Binding="{Binding report_verificato}" Width="80" /> -->
                 <DataGridTextColumn Header="Banca ore" Binding="{Binding report_bancaore}" Width="95" />
+                <DataGridTextColumn Header="Modificato" Binding="{Binding report_modificato}" Width="90" />
                 <DataGridTemplateColumn DisplayIndex="10" Width="40" MinWidth="40">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

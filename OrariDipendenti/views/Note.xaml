@@ -8,7 +8,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Note" Height="256.998" Width="423.991" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid FocusManager.FocusedElement="{Binding ElementName=tb_esci_note}">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" MinHeight="36" />
@@ -19,7 +19,7 @@
             <Button IsCancel="True" MinWidth="60" Content="_Cancel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" />
         </WrapPanel>
 
-        <TextBox Name="tb_esci_note" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10,46,10,20" />
+        <TextBox Name="tb_esci_note" Focusable="True" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10,46,10,20" />
 
         <Label x:Name="label_Copy1" Content="Note:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="31" FontSize="14" Width="44" />
     </Grid>

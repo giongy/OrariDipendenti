@@ -598,7 +598,7 @@ namespace OrariDipendenti
                         report_ore_dentro = ore_dentro,
                         report_pausa = row["pausa"].ToString(),
                         report_ore_lavorate = ore_lavorate,
-                        //report_verificato = row["verificato"].ToString(),
+                        report_modificato = row["modificato"].ToString(),
                         report_bancaore = bancaore,
                         report_eu_id = row["eu_id"].ToString()
                     });
@@ -649,7 +649,7 @@ namespace OrariDipendenti
                         report_ore_dentro = row["ore_dentro"].ToString(),
                         report_pausa = row["pausa"].ToString(),
                         report_ore_lavorate = row["ore_lavorate"].ToString(),
-                        //report_verificato = row["verificato"].ToString(),
+                        report_modificato = row["modificato"].ToString(),
                         report_bancaore = bancaore,
                         report_eu_id = row["eu_id"].ToString()
                     });
