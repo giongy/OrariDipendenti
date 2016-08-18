@@ -9,7 +9,7 @@
     <Border BorderBrush="Black" BorderThickness="1" Padding="5" Margin="5">
         <Grid x:Name="blocco">
             <Grid.Background>
-                <SolidColorBrush Color="WhiteSmoke" Opacity="0.4" />
+                <SolidColorBrush Color="WhiteSmoke" Opacity="0.67" />
             </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />

@@ -425,22 +425,16 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\daisy.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\daisy2.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Content Include="images\sfondo-grande.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\sfondo-grande2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\sfondo-pdf2.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\sfondopdf.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\sfondoscuola0.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <SplashScreen Include="images\splash.png">
@@ -464,9 +458,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="note.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\daisy1.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\delete.png" />
