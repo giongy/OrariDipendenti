@@ -1037,6 +1037,8 @@ namespace OrariDipendenti
             popupText.Padding = new Thickness(10, 10, 10, 10);
             popupText.Margin = new Thickness(2, 2, 2, 2);
             popupText.FontSize = 35;
+            popupText.MaxWidth = 800;
+            popupText.TextWrapping = TextWrapping.Wrap;
 
             popupText.Text = Properties.Settings.Default.news;
 
