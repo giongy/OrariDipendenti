@@ -13,6 +13,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -21,6 +22,8 @@ namespace OrariDipendenti
     public partial class MainWindow : MetroWindow
     {
         private static MainWindow _myWindow;
+        private Popup codePopup;
+
         private DispatcherTimer timer = new DispatcherTimer();
 
         private IScheduler sched = new StdSchedulerFactory().GetScheduler();
@@ -487,6 +490,26 @@ namespace OrariDipendenti
                 Properties.Settings.Default.Save();
                 MessageBox.Show("Password cambiata con successo");
                 Log.LogMessageToFile("-*- cambio password");
+            }
+        }
+
+        //************************************************************
+        //  news
+        //************************************************************
+        private void MenuItem_Click_news(object sender, RoutedEventArgs e) //password change
+        {
+            News_edit newsEdit = new News_edit(Properties.Settings.Default.news);
+            newsEdit.tb_news_edit.Focus();
+            if (newsEdit.ShowDialog() == true)
+            {
+                if (Properties.Settings.Default.news != "")
+                {
+                    img_news.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    img_news.Visibility = Visibility.Hidden;
+                }
             }
         }
 
@@ -997,6 +1020,43 @@ namespace OrariDipendenti
             Debug.WriteLine("shutdown");
             Log.LogMessageToFile("-*- ------------------------- APP STOP ----------------");
             sched.Shutdown();
+        }
+
+        private void img_news_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            codePopup = new Popup();
+            WrapPanel wp = new WrapPanel();
+            wp.Orientation = System.Windows.Controls.Orientation.Vertical;
+
+            TextBlock popupText1 = new TextBlock();
+            popupText1.Text = "Clicca ovunque fuori per chiudermi";
+            popupText1.Background = Brushes.Black;
+            popupText1.Foreground = Brushes.White;
+
+            TextBlock popupText = new TextBlock();
+            popupText.Padding = new Thickness(10, 10, 10, 10);
+            popupText.Margin = new Thickness(2, 2, 2, 2);
+            popupText.FontSize = 35;
+
+            popupText.Text = Properties.Settings.Default.news;
+
+            popupText.Background = Brushes.White;
+            popupText.Foreground = Brushes.Chocolate;
+
+            wp.Children.Add(popupText);
+            wp.Children.Add(popupText1);
+            codePopup.Child = wp;
+            codePopup.PlacementTarget = this;
+
+            codePopup.Placement = PlacementMode.Center;
+            codePopup.StaysOpen = false;
+            codePopup.IsOpen = true;
+        }
+
+        private void img_news_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+
+        {
+            codePopup = null;
         }
     }//fine class
 

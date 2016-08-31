@@ -29,5 +29,8 @@
     <Setting Name="backupFile" Type="System.String" Scope="User">
       <Value Profile="(Default)">no</Value>
     </Setting>
+    <Setting Name="news" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

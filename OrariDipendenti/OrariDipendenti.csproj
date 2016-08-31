@@ -257,11 +257,17 @@
     <Compile Include="views\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
     </Compile>
+    <Compile Include="views\News_read.xaml.cs">
+      <DependentUpon>News_read.xaml</DependentUpon>
+    </Compile>
     <Compile Include="views\Help_iniziale.xaml.cs">
       <DependentUpon>Help_iniziale.xaml</DependentUpon>
     </Compile>
     <Compile Include="utilities\job_bk.cs" />
     <Compile Include="utilities\job_refresh.cs" />
+    <Compile Include="views\News_edit.xaml.cs">
+      <DependentUpon>News_edit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="views\Note.xaml.cs">
       <DependentUpon>Note.xaml</DependentUpon>
     </Compile>
@@ -347,9 +353,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="views\News_read.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="views\Help_iniziale.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\News_edit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="views\Note.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -428,6 +442,12 @@
     <Resource Include="images\daisy2.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Content Include="images\news2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\news_picture1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\sfondo-grande.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
