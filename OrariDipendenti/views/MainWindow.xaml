@@ -33,8 +33,10 @@
             </MenuItem>
             <MenuItem x:Name="menu_db" IsEnabled="False" Header="Gestione Database" Background="{x:Null}">
                 <MenuItem x:Name="importa_db" Header="Importa(Sovrascrivi/Ripristina) Database"  Click="importaDb" />
+                <Separator />
                 <MenuItem x:Name="nuovo_db" Header="Apri Database"  Click="apriDb" />
                 <MenuItem x:Name="default_Database" Header="Ritorna al database di default"  Click="defaultDb" />
+                <Separator />
                 <MenuItem x:Name="bckp_db" Header="Backup/Copia manuale"  Click="backupDb" />
                 <MenuItem x:Name="scheduler_Database" Header="backup automatico"  Click="backup_scheduler_Db" />
             </MenuItem>
@@ -42,6 +44,7 @@
             <MenuItem Header="Amministrazione" Background="{x:Null}">
                 <MenuItem x:Name="login" Header="Login"  Click="MenuItem_Click_1" />
                 <MenuItem x:Name="changepassword" Header="Cambio password"  Click="MenuItem_Click_changepw" />
+                <Separator />
                 <MenuItem x:Name="news" Header="News"  Click="MenuItem_Click_news" />
             </MenuItem>
             <MenuItem Header="Malattia/Ferie" Click="MenuItem_Malattia_Click" Background="{x:Null}" />
