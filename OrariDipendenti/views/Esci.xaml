@@ -32,7 +32,7 @@
         <xctk:TimePicker x:Name="timePicker_esci_pausa"
                          Validation.Error="Validation_Error"
                          Value="{Binding UpdateSourceTrigger=PropertyChanged, Path=pausa,ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
-                         Margin="104,171,101,0"  MaxDropDownHeight="200" TimeInterval="0:10:0" FontSize="24" ShowButtonSpinner="False" Height="31" VerticalAlignment="Top" Text="00:00" />
+                         Margin="104,171,101,0"  MaxDropDownHeight="200" TimeInterval="0:05:0" FontSize="24" ShowButtonSpinner="False" Height="31" VerticalAlignment="Top" Text="00:00" />
         <Label x:Name="label_Copy" Content="Ore di pausa:" HorizontalAlignment="Left" Margin="10,171,0,0" VerticalAlignment="Top" Height="31" FontSize="14" Width="91" />
 
         <TextBox Name="tb_esci_note" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="104,220,101,19" />
