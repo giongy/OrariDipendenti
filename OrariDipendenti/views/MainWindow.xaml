@@ -157,7 +157,7 @@
             <TabItem x:Name="tab_report" Header="Report" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="46,0,-46,0" Width="99" Cursor="Hand">
                 <Grid>
                     <TabControl Background="{x:Null}" SelectionChanged="TabControl_SelectionChanged_1" VerticalContentAlignment="Top">
-                        <TabItem x:Name="tabitem_report_mensile" Header="Report Mensile" Margin="389.013,-9.333,-397.013,9.333" FontSize="10" Cursor="Hand" RenderTransformOrigin="0.5,0.5">
+                        <TabItem x:Name="tabitem_report_mensile" Header="Report Mensile" Margin="281,-9,-289,9" FontSize="10" Cursor="Hand" RenderTransformOrigin="0.5,0.5">
                             <TabItem.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
@@ -199,7 +199,7 @@
                                 </WrapPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem x:Name="tabitem_report_giornaliero" Header="Report Giornaliero" Margin="337.633,-9.331,-342.566,8.331" RenderTransformOrigin="1.056,0.6" FontSize="8" Cursor="Hand">
+                        <TabItem x:Name="tabitem_report_giornaliero" Header="Report Giornaliero" Margin="230,-9,-235,8" RenderTransformOrigin="1.056,0.6" FontSize="8" Cursor="Hand">
                             <TabItem.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
@@ -228,6 +228,42 @@
                                 <Button  Content="Cerca" Click="button_cerca_giornaliero_Click" Margin="418,0,0,10" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
 
                                 <controls:tabellaReport Grid.Row="2" x:Name="tabellagiorno" Margin="10,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tabitem_report_all" Header="Riepilogo" Margin="230,-9,-235,8" RenderTransformOrigin="1.056,0.6" FontSize="8" Cursor="Hand">
+                            <TabItem.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
+                                    <SkewTransform />
+                                    <RotateTransform />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </TabItem.RenderTransform>
+                            <Grid x:Name="grid_report_tutti" Margin="0,-20,0,0">
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" MinHeight="58.203" />
+                                    <RowDefinition Height="Auto" MinHeight="37.96" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock  Text="Riepilogo di tutti i dipendenti per il mese" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="10,-8,0,0" HorizontalAlignment="Left" Width="724" VerticalAlignment="Top" />
+                                <TextBlock x:Name="label_reporttutti_dipname" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="329,-7.666,5,12.666" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+
+                                <WrapPanel Orientation="Horizontal" Margin="0,0,10,0" Grid.Row="1" HorizontalAlignment="Right" Width="421" Height="36" VerticalAlignment="Top">
+
+                                    <Button x:Name="btn_stampa_tutti" Content="crea report(pdf)"  Click="pdf_tutti" Margin="5,0,5,1" FontSize="12" IsEnabled="False" FontFamily="Segoe UI"  Padding="0,6,5,3" Width="120.5" Height="30" />
+                                    <Button x:Name="btn_stampa_tutti_Copy" Content="Apri cartella report"  Click="button_Click_aprireportfolder" FontSize="10" FontFamily="Segoe UI" Margin="5,0,5,1" Height="30" />
+                                </WrapPanel>
+
+                                <Label  Content="Mese:" Margin="14,2,0,45" Grid.Row="1" FontSize="12" Width="46" HorizontalAlignment="Left" FontWeight="Bold" />
+                                <ComboBox x:Name="comboBox_lista_mesi_tutti" SelectionChanged="comboBox_lista_mesi_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="60,0,0,0" Grid.Row="1" ScrollViewer.CanContentScroll="True" Width="89" FontFamily="Segoe UI" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" />
+                                <Button Content="SALVA PDF" Click="button_cerca_mensile_tutti_Click" Margin="188,0,0,0" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" Height="30" VerticalAlignment="Top" />
+
+                                <controls:tabellaReport Grid.Row="2" x:Name="tabellatutti" Margin="10,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
                             </Grid>
                         </TabItem>
                     </TabControl>

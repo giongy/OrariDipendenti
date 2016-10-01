@@ -7,9 +7,9 @@ using System.Diagnostics;
 
 namespace OrariDipendenti
 {
-    internal static class pdf
+    internal static class pdf_all
     {
-        public static Document generaPdf(List<Report> tabella, string title, string bancaore)
+        public static Document generaPdf(List<Report> tabella)
         {
             Document document = new Document();
 
@@ -18,9 +18,21 @@ namespace OrariDipendenti
             image.Height = 80;
             image.Width = 600;
 
-            DefineStyles(document);
+            // section.AddParagraph("Report Mensile");
+            // section.AddParagraph(title);
+            // section.AddParagraph();
+            // MigraDoc.DocumentObjectModel.Paragraph paragraph = section.AddParagraph();
+            //paragraph.Format.Font.Color = MigraDoc.DocumentObjectModel.Color.FromCmyk(100, 30, 20, 50);
+            //paragraph.Format.Font.Size = 30;
+            // paragraph.AddFormattedText("Report Mensile: "+title);
+            // MigraDoc.DocumentObjectModel.FormattedText ft = paragraph.AddFormattedText("Small text", TextFormat.Bold);
+            // ft.Font.Size = 6;
 
-            document.LastSection.AddParagraph("Report - " + title, "Heading1");
+            DefineStyles(document);
+            //DefineTables(document);
+
+            document.LastSection.AddParagraph("Report - ", "Heading1");
+            // document.LastSection.AddParagraph(title, "Heading1");
 
             Table table = new Table();
             table.Borders.Width = 0.75;
@@ -87,7 +99,7 @@ namespace OrariDipendenti
             table.SetEdge(0, 0, 1, 1, Edge.Box, BorderStyle.Single, 1.5, Colors.Black);
 
             document.LastSection.Add(table);
-            document.LastSection.AddParagraph("TOTALE BANCA ORE: " + bancaore, "Heading2");
+            document.LastSection.AddParagraph("TOTALE BANCA ORE: ", "Heading2");
 
             document.DefaultPageSetup.RightMargin = 13;
             document.DefaultPageSetup.LeftMargin = 15;
@@ -97,7 +109,7 @@ namespace OrariDipendenti
             pdfRenderer.Document = document;
 
             pdfRenderer.RenderDocument();
-            string filename = initTable.pathPdf() + "/" + title + ".pdf";
+            string filename = initTable.pathPdf() + "/" + "title" + ".pdf";
             pdfRenderer.PdfDocument.Save(filename);
             //Process.Start(filename);
             return document;

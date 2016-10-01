@@ -18,7 +18,7 @@
         <xctk:TimePicker x:Name="timePicker_entra"
                          Validation.Error="Validation_Error"
                          Value="{Binding UpdateSourceTrigger=PropertyChanged, Path=entrata,ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
-                         Margin="100,76,14,0"  StartTime="06:00" MaxDropDownHeight="200" TimeInterval="0:5:0" FontSize="24" ShowButtonSpinner="False" Height="31" VerticalAlignment="Top" />
+                         Margin="100,76,14,0" UpdateValueOnEnterKey="True" StartTime="06:00" MaxDropDownHeight="200" TimeInterval="0:5:0" FontSize="24" ShowButtonSpinner="False" Height="31" VerticalAlignment="Top" />
 
         <WrapPanel Grid.Row="1" Margin="0,0,27,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="138">
             <Button IsDefault="True" x:Name="btnDialogOk" Command="Save" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0" Content="_Ok">

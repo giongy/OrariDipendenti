@@ -201,5 +201,36 @@ namespace OrariDipendenti
                 }
             }
         }
+
+        public DataTable mensile_tutti(string mese)
+        {
+            string[] subStrings = mese.Split('-');
+            using (SQLiteConnection conn = new SQLiteConnection("data source=" + initTable.path()))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+
+                    try
+                    {
+                        string sql = "SELECT * FROM report1 WHERE strftime('%m', giorno) = '" + subStrings[0] + "' and strftime('%Y', giorno) = '" + subStrings[1] + "' ORDER BY nome,giorno";
+                        Debug.WriteLine(sql);
+                        DataTable dt = sh.Select(sql);
+                        return dt;
+                    }
+                    catch (SQLiteException e)
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
     }
 }
