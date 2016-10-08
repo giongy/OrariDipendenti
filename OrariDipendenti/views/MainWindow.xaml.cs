@@ -6,11 +6,13 @@ using Quartz.Impl;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -708,8 +710,19 @@ namespace OrariDipendenti
 
                 DataTable dt = rs.mensile_tutti(comboBox_lista_mesi_tutti.SelectedValue.ToString());
                 List<Report> reportlist = new List<Report>();
+
+                string nome_precedente = "";
+                string nome_corrente = "";
+                Boolean sommario = false;
                 foreach (DataRow row in dt.Rows)
                 {
+                    nome_corrente = row["nome"].ToString();
+                    if (nome_corrente != nome_precedente && nome_precedente != "")
+                    {
+                        reportlist.Add(sommarioReport(totale_secondi_banca_ore));
+                        totale_secondi_banca_ore = 0;
+                    }
+
                     string ore_lavorate = row["ore_lavorate"].ToString();
                     string ore_dentro = row["ore_dentro"].ToString();
                     double seconds_oredafare = TimeSpan.Parse(row["ore_da_fare"].ToString()).TotalSeconds;
@@ -741,25 +754,10 @@ namespace OrariDipendenti
                         report_bancaore = bancaore,
                         report_eu_id = row["eu_id"].ToString()
                     });
-                }
 
-                reportlist.Add(new Report()
-                {
-                    report_giorno = "---",
-                    report_giorno_dayofweek = "---",
-                    report_nome = "---",
-                    report_id_dip = "---",
-                    report_orario = "---",
-                    report_entrata = "---",
-                    report_uscita = "---",
-                    report_note = "---",
-                    report_ore_dentro = "---",
-                    report_pausa = "---",
-                    report_ore_lavorate = "---",
-                    report_modificato = "---",
-                    report_eu_id = "---",
-                    report_bancaore = Utilities.ToHMString(TimeSpan.FromSeconds(totale_secondi_banca_ore)).Trim()
-                });
+                    nome_precedente = nome_corrente;
+                }
+                reportlist.Add(sommarioReport(totale_secondi_banca_ore));
 
                 tabellatutti.dataGrid_report_mensile.ItemsSource = reportlist;
                 //label_report_dipname.Text = combo_lista_dipendenti.Text + " " + comboBox_lista_mesi.SelectedValue.ToString();
@@ -768,6 +766,27 @@ namespace OrariDipendenti
                 //btn_aggiungi_presenza.IsEnabled = true;
                 btn_stampa_tutti.IsEnabled = true;
             }
+        }
+
+        private Report sommarioReport(double tot)
+        {
+            return new Report()
+            {
+                report_giorno = "---",
+                report_giorno_dayofweek = "---",
+                report_nome = "---",
+                report_id_dip = "---",
+                report_orario = "---",
+                report_entrata = "---",
+                report_uscita = "---",
+                report_note = "TOTALE BANCA ORE:",
+                report_ore_dentro = "---",
+                report_pausa = "---",
+                report_ore_lavorate = "---",
+                report_modificato = "---",
+                report_eu_id = "---",
+                report_bancaore = Utilities.ToHMString(TimeSpan.FromSeconds(tot)).Trim()
+            };
         }
 
         //************************************************************
@@ -794,25 +813,53 @@ namespace OrariDipendenti
         private void button1_Click(object sender, RoutedEventArgs e) //stampa
         {
             List<Report> reportlist = tabellamensile.dataGrid_report_mensile.ItemsSource as List<Report>;
-            Document d = pdf.generaPdf(reportlist, label_report_dipname.Text, label_tot_bancaore.Content.ToString());
-            System.Windows.MessageBox.Show("Report pdf salvato in :" + System.IO.Path.Combine(initTable.initFolder(), MyGlobals.folder_report));
-            string ddl = MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToString(d);
+            string nome = label_report_dipname.Text;
+            string totbo = label_tot_bancaore.Content.ToString();
 
-            preview p = new preview();
-            p.migra.Ddl = ddl;
-            p.Show();
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (o, ea) =>
+            {
+                Document d = pdf.generaPdf(reportlist, nome, totbo);
+                System.Windows.MessageBox.Show("Report pdf salvato in :" + System.IO.Path.Combine(initTable.initFolder(), MyGlobals.folder_report) + "\n\nApri la cartella report per trovarlo.");
+                //string ddl = MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToString(d);
+                //preview p = new preview();
+                //p.migra.Ddl = ddl;
+                //p.Show();
+            };
+            worker.RunWorkerCompleted += (o, ea) =>
+            {
+                _busyIndicator.IsBusy = false;
+            };
+            _busyIndicator.IsBusy = true;
+            worker.RunWorkerAsync();
         }
 
         private void pdf_tutti(object sender, RoutedEventArgs e) //stampa
         {
             List<Report> reportlist = tabellatutti.dataGrid_report_mensile.ItemsSource as List<Report>;
-            Document d = pdf_all.generaPdf(reportlist);
-            System.Windows.MessageBox.Show("Report pdf salvato in :" + System.IO.Path.Combine(initTable.initFolder(), MyGlobals.folder_report));
-            string ddl = MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToString(d);
+            string mese = comboBox_lista_mesi_tutti.SelectedValue.ToString();
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (o, ea) =>
+            {
+                Document d = pdf_all.generaPdf(reportlist, mese);
+                System.Windows.MessageBox.Show("REPORT PER TUTTI I DIPENDENTI CREATO CORRETTAMENTE.\n\nApri la cartella report per trovarlo.");
+                //use the Dispatcher to delegate the listOfStrings collection back to the UI
+                // Dispatcher.Invoke((Action)(() => _listBox.ItemsSource = listOfString));
+            };
+            worker.RunWorkerCompleted += (o, ea) =>
+            {
+                _busyIndicator.IsBusy = false;
+            };
+            _busyIndicator.IsBusy = true;
+            worker.RunWorkerAsync();
 
-            preview p = new preview();
-            p.migra.Ddl = ddl;
-            p.Show();
+            /*
+        string ddl = MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToString(d);
+
+        preview p = new preview();
+        p.migra.Ddl = ddl;
+        p.Show();
+    */
         }
 
         //************************************************************

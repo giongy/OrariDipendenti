@@ -9,7 +9,7 @@ namespace OrariDipendenti
 {
     internal static class pdf_all
     {
-        public static Document generaPdf(List<Report> tabella)
+        public static Document generaPdf(List<Report> tabella, string mese)
         {
             Document document = new Document();
 
@@ -18,21 +18,10 @@ namespace OrariDipendenti
             image.Height = 80;
             image.Width = 600;
 
-            // section.AddParagraph("Report Mensile");
-            // section.AddParagraph(title);
-            // section.AddParagraph();
-            // MigraDoc.DocumentObjectModel.Paragraph paragraph = section.AddParagraph();
-            //paragraph.Format.Font.Color = MigraDoc.DocumentObjectModel.Color.FromCmyk(100, 30, 20, 50);
-            //paragraph.Format.Font.Size = 30;
-            // paragraph.AddFormattedText("Report Mensile: "+title);
-            // MigraDoc.DocumentObjectModel.FormattedText ft = paragraph.AddFormattedText("Small text", TextFormat.Bold);
-            // ft.Font.Size = 6;
-
             DefineStyles(document);
             //DefineTables(document);
 
-            document.LastSection.AddParagraph("Report - ", "Heading1");
-            // document.LastSection.AddParagraph(title, "Heading1");
+            document.LastSection.AddParagraph("Report tutti i dipendenti " + mese, "Heading1");
 
             Table table = new Table();
             table.Borders.Width = 0.75;
@@ -41,65 +30,79 @@ namespace OrariDipendenti
             Column column = table.AddColumn(Unit.FromCentimeter(2.2));
             column.Format.Alignment = ParagraphAlignment.Center;
 
+            table.AddColumn(Unit.FromCentimeter(2));
             table.AddColumn(Unit.FromCentimeter(1.6));
             table.AddColumn(Unit.FromCentimeter(1.6));
             table.AddColumn(Unit.FromCentimeter(1.6));
             table.AddColumn(Unit.FromCentimeter(1.6));
             table.AddColumn(Unit.FromCentimeter(1.6));
             table.AddColumn(Unit.FromCentimeter(1.6));
-            table.AddColumn(Unit.FromCentimeter(7));
-            table.AddColumn(Unit.FromCentimeter(1.3));
+            table.AddColumn(Unit.FromCentimeter(4.5));
+            table.AddColumn(Unit.FromCentimeter(1.7));
 
             Row row = table.AddRow();
             row.Shading.Color = Colors.PaleGoldenrod;
             Cell cell = row.Cells[0];
-            cell.AddParagraph("Giorno");
+            cell.AddParagraph("Nome");
             cell = row.Cells[1];
-            cell.AddParagraph("Orario");
+            cell.AddParagraph("Giorno");
             cell = row.Cells[2];
-            cell.AddParagraph("Entrata");
+            cell.AddParagraph("Orario");
             cell = row.Cells[3];
-            cell.AddParagraph("Uscita");
+            cell.AddParagraph("Entrata");
             cell = row.Cells[4];
-            cell.AddParagraph("Pausa");
+            cell.AddParagraph("Uscita");
             cell = row.Cells[5];
-            cell.AddParagraph("Ore a scuola");
+            cell.AddParagraph("Pausa");
             cell = row.Cells[6];
-            cell.AddParagraph("Ore Lavorate");
+            cell.AddParagraph("Ore a scuola");
             cell = row.Cells[7];
-            cell.AddParagraph("Note");
+            cell.AddParagraph("Ore Lavorate");
             cell = row.Cells[8];
+            cell.AddParagraph("Note");
+            cell = row.Cells[9];
             cell.AddParagraph("Banca Ore");
 
+            string heading = "";
             foreach (var riga in tabella)
             {
+                if (riga.report_nome == "---")
+                {
+                    heading = "Heading2";
+                }
+                else
+                {
+                    heading = "Normal";
+                }
                 Debug.WriteLine("Amount " + riga.report_entrata + " " + riga.report_nome + " " + riga.report_bancaore);
                 row = table.AddRow();
                 row.VerticalAlignment = VerticalAlignment.Center;
+                row.Style = heading;
                 cell = row.Cells[0];
-                cell.AddParagraph(riga.report_giorno_dayofweek);
+                cell.AddParagraph(riga.report_nome);
                 cell = row.Cells[1];
-                cell.AddParagraph(riga.report_orario);
+                cell.AddParagraph(riga.report_giorno_dayofweek);
                 cell = row.Cells[2];
-                cell.AddParagraph(riga.report_entrata);
+                cell.AddParagraph(riga.report_orario);
                 cell = row.Cells[3];
-                cell.AddParagraph(riga.report_uscita);
+                cell.AddParagraph(riga.report_entrata);
                 cell = row.Cells[4];
-                cell.AddParagraph(riga.report_pausa);
+                cell.AddParagraph(riga.report_uscita);
                 cell = row.Cells[5];
-                cell.AddParagraph(riga.report_ore_dentro);
+                cell.AddParagraph(riga.report_pausa);
                 cell = row.Cells[6];
-                cell.AddParagraph(riga.report_ore_lavorate);
+                cell.AddParagraph(riga.report_ore_dentro);
                 cell = row.Cells[7];
-                cell.AddParagraph(riga.report_note);
+                cell.AddParagraph(riga.report_ore_lavorate);
                 cell = row.Cells[8];
+                cell.AddParagraph(riga.report_note);
+                cell = row.Cells[9];
                 cell.AddParagraph(riga.report_bancaore);
             }
 
             table.SetEdge(0, 0, 1, 1, Edge.Box, BorderStyle.Single, 1.5, Colors.Black);
 
             document.LastSection.Add(table);
-            document.LastSection.AddParagraph("TOTALE BANCA ORE: ", "Heading2");
 
             document.DefaultPageSetup.RightMargin = 13;
             document.DefaultPageSetup.LeftMargin = 15;
@@ -109,7 +112,7 @@ namespace OrariDipendenti
             pdfRenderer.Document = document;
 
             pdfRenderer.RenderDocument();
-            string filename = initTable.pathPdf() + "/" + "title" + ".pdf";
+            string filename = initTable.pathPdf() + "/" + "tutti_i_dipendenti_" + mese + ".pdf";
             pdfRenderer.PdfDocument.Save(filename);
             //Process.Start(filename);
             return document;

@@ -18,5 +18,6 @@
         public string report_bancaore { get; set; }
 
         public string report_eu_id { get; set; }
+        public string report_nome_nascosto { get; set; }
     }
 }
