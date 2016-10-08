@@ -6,6 +6,7 @@ namespace OrariDipendenti
 {
     public class addentratauscita : IDataErrorInfo
     {
+        public string orario { get; set; }
         public string entrata { get; set; }
 
         public string Error
@@ -55,6 +56,14 @@ namespace OrariDipendenti
                     if (giorno == null)
                     {
                         result = "serve inserire un giorno";
+                    }
+                }
+                if (columnName == "orario")
+                {
+                    Debug.WriteLine(orario);
+                    if (string.IsNullOrEmpty(orario) || orario.Contains("_"))
+                    {
+                        result = "serve inserire un orario";
                     }
                 }
                 return result;

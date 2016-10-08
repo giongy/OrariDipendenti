@@ -15,7 +15,7 @@ namespace OrariDipendenti
         private addentratauscita aeu = new addentratauscita();
         private int _errors = 0;
 
-        public editEntrataUscita(string id_eu, string id_dip, string nome, string giorno, string entrata, string uscita, string pausa, string note)
+        public editEntrataUscita(string id_eu, string id_dip, string nome, string giorno, string orario, string entrata, string uscita, string pausa, string note)
         {
             InitializeComponent();
             this.DataContext = aeu;
@@ -23,6 +23,8 @@ namespace OrariDipendenti
             label_editpresenza_iddip.Content = id_dip;
             label_editpresenza_nome.Content = nome;
             label_editpresenza_giorno.Content = giorno;
+
+            aeu.orario = orario.Substring(0, 5);
             //tb_editpresenza_entrata.Text = entrata.Substring(0,5);
             aeu.entrata = entrata.Substring(0, 5);
             //tb_editpresenza_uscita.Text = uscita.Substring(0,5);

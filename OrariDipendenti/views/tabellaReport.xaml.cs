@@ -17,13 +17,13 @@ namespace OrariDipendenti
         {
             Report r = ((FrameworkElement)sender).DataContext as Report;
 
-            editEntrataUscita ed = new editEntrataUscita(r.report_eu_id, r.report_id_dip, r.report_nome, r.report_giorno, r.report_entrata, r.report_uscita, r.report_pausa, r.report_note);
+            editEntrataUscita ed = new editEntrataUscita(r.report_eu_id, r.report_id_dip, r.report_nome, r.report_giorno, r.report_orario, r.report_entrata, r.report_uscita, r.report_pausa, r.report_note);
             //ed.nome_dipendente = o.nome_dipendente.ToString();
 
             if (ed.ShowDialog() == true)
             {
                 sql_entrate_uscite eusql = new sql_entrate_uscite();
-                string ok = eusql.edit_entrata_uscita(r.report_eu_id, ed.tb_editpresenza_entrata.Text, ed.tb_editpresenza_uscita.Text, ed.tb_editpresenza_pausa.Text, ed.tb_editpresenza_note.Text);
+                string ok = eusql.edit_entrata_uscita(r.report_eu_id, ed.tb_editpresenza_orario.Text, ed.tb_editpresenza_entrata.Text, ed.tb_editpresenza_uscita.Text, ed.tb_editpresenza_pausa.Text, ed.tb_editpresenza_note.Text);
                 if (ok == MyGlobals.ok)
                 {
                     refresh();

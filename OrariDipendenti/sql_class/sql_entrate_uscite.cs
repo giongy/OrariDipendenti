@@ -295,7 +295,7 @@ namespace OrariDipendenti
             }
         }
 
-        public string edit_entrata_uscita(string id, string entrata, string uscita, string pausa, string note)
+        public string edit_entrata_uscita(string id, string orario, string entrata, string uscita, string pausa, string note)
         {
             using (SQLiteConnection conn = new SQLiteConnection("data source=" + initTable.path()))
             {
@@ -308,6 +308,7 @@ namespace OrariDipendenti
 
                     var dic = new Dictionary<string, object>();
 
+                    dic["ore_da_fare"] = orario;
                     dic["entrata"] = entrata;
                     dic["uscita"] = uscita;
                     dic["pausa"] = pausa;
