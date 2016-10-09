@@ -50,7 +50,7 @@ namespace OrariDipendenti
             initTable it = new initTable();
             it.init();
 
-            Log.LogMessageToFile("-*- ------------------------- APP START ----------------");
+            Log.LogMessageToDb("-*- ------------------------- APP START ----------------");
 
             label_version.Content = "Versione " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.95);
@@ -103,7 +103,7 @@ namespace OrariDipendenti
         private void check_db()
         {
             label_db_aperto.Content = "DataBase in uso: " + Properties.Settings.Default.nomeDBAperto;
-            Log.LogMessageToFile("-*- database refresh eseguito. in uso: " + Properties.Settings.Default.nomeDBAperto);
+            Log.LogMessageToDb("-*- database refresh eseguito. in uso: " + Properties.Settings.Default.nomeDBAperto);
             if (Properties.Settings.Default.nomeDBAperto != MyGlobals.default_db_aperto)
             {
                 MessageBox.Show(MyGlobals.alert_db());
@@ -359,8 +359,18 @@ namespace OrariDipendenti
         //************************************************************
         private void MenuItem_Click(object sender, RoutedEventArgs e) //log click
         {
-            Process.Start("IExplore.exe", Log.GetTempPath() + MyGlobals.log_file + ".txt");
-            // Process.Start(Log.GetTempPath() + MyGlobals.log_file);
+            //Process.Start("IExplore.exe", Log.GetTempPath() + MyGlobals.log_file + ".txt");
+            LogViewer lv = new LogViewer();
+            sql_log sl = new sql_log();
+            DataTable d = sl.select_log();
+            List<LogObject> entryList = new List<LogObject>();
+            foreach (DataRow row in d.Rows)
+            {
+                entryList.Add(new LogObject() { entry = row["log_entry"].ToString() });
+            }
+            lv.dg_Log.ItemsSource = entryList;
+            lv.dg_Log.ScrollIntoView(entryList[entryList.Count - 1]);
+            lv.Show();
         }
 
         //************************************************************
@@ -420,7 +430,7 @@ namespace OrariDipendenti
                     if (pw.passwordBox.Password == Properties.Settings.Default.powerpw || pw.passwordBox.Password == Properties.Settings.Default.userpw)
                     {
                         Properties.Settings.Default.admin = true;
-                        Log.LogMessageToFile("-*- admin ha fatto login");
+                        Log.LogMessageToDb("-*- admin ha fatto login");
                     }
                     else
                     {
@@ -431,7 +441,7 @@ namespace OrariDipendenti
             else // se sono già loggato
             {
                 Properties.Settings.Default.admin = false;
-                Log.LogMessageToFile("-*- admin ha fatto logoff");
+                Log.LogMessageToDb("-*- admin ha fatto logoff");
             }
 
             admin();
@@ -440,7 +450,7 @@ namespace OrariDipendenti
         private void timer_Tick(object sender, EventArgs e)//timer amministrazione
         {
             Debug.WriteLine("nascondo admin");
-            Log.LogMessageToFile("-*- Admin logoff dopo timeout");
+            Log.LogMessageToDb("-*- Admin logoff dopo timeout");
             Properties.Settings.Default.admin = false;
             (sender as DispatcherTimer).Stop();
             admin();
@@ -491,7 +501,7 @@ namespace OrariDipendenti
                 Properties.Settings.Default.userpw = pwc.textBox_password_new2.Password;
                 Properties.Settings.Default.Save();
                 MessageBox.Show("Password cambiata con successo");
-                Log.LogMessageToFile("-*- cambio password");
+                Log.LogMessageToDb("-*- cambio password");
             }
         }
 
@@ -800,7 +810,7 @@ namespace OrariDipendenti
             if (aeuw.ShowDialog() == true)
             {
                 sql_entrate_uscite eusql = new sql_entrate_uscite();
-                Log.LogMessageToFile("aggiunta manuale: " + aeuw.addpresenza_nome + " " + aeuw.addpresenza_giorno + " " + aeuw.addpresenza_entrata + " " + aeuw.addpresenza_uscita + " " + aeuw.addpresenza_pausa);
+                Log.LogMessageToDb("aggiunta manuale: " + aeuw.addpresenza_nome + " " + aeuw.addpresenza_giorno + " " + aeuw.addpresenza_entrata + " " + aeuw.addpresenza_uscita + " " + aeuw.addpresenza_pausa);
                 string r = eusql.add_new_entrata_uscita(aeuw.addpresenza_id, aeuw.addpresenza_nome, aeuw.addpresenza_giorno, aeuw.addpresenza_entrata, aeuw.addpresenza_uscita, aeuw.addpresenza_pausa, aeuw.addpresenza_note);
 
                 button_cerca_mensile_Click(this, new RoutedEventArgs()); // REFRESH DELLA TABELLA REPORT, cercando di nuovo
@@ -925,7 +935,7 @@ namespace OrariDipendenti
                     Properties.Settings.Default.nomeDBAperto = MyGlobals.default_db_aperto;
                     Properties.Settings.Default.Save();
                     MessageBox.Show("Il database di default è stato sovrascritto correttamente da quello che hai scelto");
-                    Log.LogMessageToFile("-*- database di default SOVRASCRITTO da: " + fname);
+                    Log.LogMessageToDb("-*- database di default SOVRASCRITTO da: " + fname);
                 }
                 catch (IOException e1)
                 {
@@ -964,7 +974,7 @@ namespace OrariDipendenti
             Properties.Settings.Default.nomeDBAperto = MyGlobals.default_db_aperto;
             Properties.Settings.Default.Save();
             MessageBox.Show("Stai usando di nuovo il database di default, quello buono!");
-            Log.LogMessageToFile("-*- database restored.");
+            Log.LogMessageToDb("-*- database restored.");
 
             refresh_db();
         }
@@ -984,7 +994,7 @@ namespace OrariDipendenti
                 {
                     System.IO.File.Copy(sourceFile, saveFileDialog.FileName, true);
                     System.Windows.MessageBox.Show("Backup eseguito con successo");
-                    Log.LogMessageToFile("-*- backup manuale eseguito.");
+                    Log.LogMessageToDb("-*- backup manuale eseguito.");
                 }
                 catch
                 {
@@ -1033,16 +1043,7 @@ namespace OrariDipendenti
                 Properties.Settings.Default.Save();
 
                 string sourceFile = initTable.path_folder();
-                //create next date which we need in order to run the code
-                //var dateNow = DateTime.Now;
-                //var date = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, hour, minutes, 0);
 
-                //Debug.WriteLine("**********Scheduler has been started!*****");
-
-                //get nex date the code need to run
-                //var nextDateValue = getNextDate(date);
-
-                //runCodeAt(nextDateValue, sourceFile, backupFile);
                 scheduler_Database.Header = MyGlobals.menu_disattiva_backup;
                 label_db_backup.Content = "Backup automatico attivo su: " + Properties.Settings.Default.backupFile;
 
@@ -1055,7 +1056,7 @@ namespace OrariDipendenti
 
                 sched.ScheduleJob(job, trigger);
 
-                Log.LogMessageToFile("-*- backup scheduler partito.");
+                Log.LogMessageToDb("-*- backup scheduler partito.");
             }
             else//è attivo, lo disattivo
             {
@@ -1063,79 +1064,14 @@ namespace OrariDipendenti
                 Properties.Settings.Default.backupAuto = false;
                 Properties.Settings.Default.backupFile = MyGlobals.backup_auto_file; //no
                 Properties.Settings.Default.Save();
-                /*
-                if (m_ctSource != null)
-                {
-                    m_ctSource.Cancel();
-                    Debug.WriteLine("**********Scheduler has stopped!*****");
-                }else
-                {
-                    Debug.WriteLine("Scheduler non è mai partito (probabilemnte app start");
-                }*/
+
                 scheduler_Database.Header = MyGlobals.menu_attiva_backup;
                 label_db_backup.Content = "Backup automatico non attivo";
-                Log.LogMessageToFile("-*- backup scheduler stoppato.");
+                Log.LogMessageToDb("-*- backup scheduler stoppato.");
                 //sched.Standby();
                 sched.PauseTrigger(new TriggerKey("aaa"));
             }
         }
-
-        /*
-        private void runCodeAt(DateTime date, string source, string dest)
-        {
-            Debug.WriteLine(source);
-            Debug.WriteLine(dest);
-            m_ctSource = new CancellationTokenSource();
-
-            var dateNow = DateTime.Now;
-            TimeSpan ts;
-            if (date > dateNow)
-                ts = date - dateNow;
-            else
-            {
-                date = getNextDate(date);
-                ts = date - dateNow;
-            }
-
-            //waits certan time and run the code, in meantime you can cancel the task at anty time
-
-            Task.Delay(ts).ContinueWith((x) =>
-            {
-                //run the code at the time
-                methodToCall(date, source, dest);
-
-                //setup call next day
-                runCodeAt(getNextDate(date), source, dest);
-            }, m_ctSource.Token);
-        }
-        */
-        /*
-        private DateTime getNextDate(DateTime date)
-        {
-            DateTime dt = date.AddDays(1);
-           // DateTime dt = date.AddMinutes(1);
-            Debug.WriteLine("prossimo " + dt);
-
-            return dt;
-        }
-        */
-        /*
-        private void methodToCall(DateTime time, string source, string dest)
-        {
-            //setup next call
-            //var nextTimeToCall = getNextDate(time);
-            try
-            {
-                System.IO.File.Copy(source, dest, true);
-                Debug.WriteLine("backup eseguito");
-                Log.LogMessageToFile("backup eseguito");
-            }
-            catch
-            {
-                throw;
-            }
-        }
-        */
 
         #endregion scheduler
 
@@ -1165,7 +1101,7 @@ namespace OrariDipendenti
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Debug.WriteLine("shutdown");
-            Log.LogMessageToFile("-*- ------------------------- APP STOP ----------------");
+            Log.LogMessageToDb("-*- ------------------------- APP STOP ----------------");
             sched.Shutdown();
         }
 

@@ -12,9 +12,12 @@ namespace OrariDipendenti
             MainWindow.MyWindow.Dispatcher.Invoke(new Action(() =>
             {
                 MainWindow.MyWindow.aggiorna();
+                sql_log sl = new sql_log();
+                sl.delete_log(); //delete old log, keep last 1000
+                sl.vacuum(); //vaacum database
             }));
 
-            Log.LogMessageToFile("-*- eseguito refresh nuovo giorno");
+            Log.LogMessageToDb("-*- eseguito refresh nuovo giorno");
         }
     }
 }

@@ -121,6 +121,12 @@ namespace OrariDipendenti
                     "                            REFERENCES orari (id)  " +
                     ");";
 
+                string create_log = "CREATE TABLE IF NOT EXISTS log ( " +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "log_entry VARCHAR (300), " +
+                    "log_type VARCHAR (20) " +
+                    ");";
+
                 string create_view_report1 = "CREATE VIEW IF NOT EXISTS report1 AS " +
                     "SELECT entrate_uscite.id as eu_id, " +
                     "strftime('%w', date(giorno)) as day_of_week, " +
@@ -144,6 +150,8 @@ namespace OrariDipendenti
                 commandCreate = new SQLiteCommand(create_orari, conn);
                 commandCreate.ExecuteNonQuery();
                 commandCreate = new SQLiteCommand(create_dipendenti, conn);
+                commandCreate.ExecuteNonQuery();
+                commandCreate = new SQLiteCommand(create_log, conn);
                 commandCreate.ExecuteNonQuery();
 
                 commandCreate = new SQLiteCommand(create_view_report1, conn);

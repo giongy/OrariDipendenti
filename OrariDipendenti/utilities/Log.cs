@@ -39,5 +39,12 @@ namespace OrariDipendenti
                 sw.Close();
             }
         }
+
+        public static void LogMessageToDb(string msg)
+        {
+            sql_log sl = new sql_log();
+            string logLine = System.String.Format("{0:G}: {1}.", System.DateTime.Now, msg);
+            string r = sl.add_record(logLine);
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace OrariDipendenti
             System.IO.File.Copy(sourcefile, savefile, true);
 
             var next = context.NextFireTimeUtc;
-            Log.LogMessageToFile("-*- backup automatico eseguito. il prossimo sarà: " + TimeZone.CurrentTimeZone.ToLocalTime(next.Value.DateTime));
+            Log.LogMessageToDb("-*- backup automatico eseguito. il prossimo sarà: " + TimeZone.CurrentTimeZone.ToLocalTime(next.Value.DateTime));
             Debug.WriteLine("prossimo job_bk: " + TimeZone.CurrentTimeZone.ToLocalTime(next.Value.DateTime));
         }
     }

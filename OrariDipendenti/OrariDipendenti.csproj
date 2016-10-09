@@ -239,6 +239,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="object_class\LogObject.cs" />
+    <Compile Include="views\LogViewer.xaml.cs">
+      <DependentUpon>LogViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="sql_class\sql_log.cs" />
     <Compile Include="utilities\pdf_all.cs" />
     <Compile Include="views\editEntrataUscita.xaml.cs">
       <DependentUpon>editEntrataUscita.xaml</DependentUpon>
@@ -322,6 +327,10 @@
     </Compile>
     <Compile Include="utilities\Utilities.cs" />
     <Compile Include="object_class\addentratauscita.cs" />
+    <Page Include="views\LogViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="views\editEntrataUscita.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -57,7 +57,7 @@ namespace OrariDipendenti
                     else //tutto ok, esco e faccio update della tabella
                     {
                         eus.add_new_uscita(esci.Ora, esci.Pausa, check_uscita_precedente["id"].ToString(), esci.tb_esci_note.Text);
-                        Log.LogMessageToFile("Uscita giorno dopo: " + check_uscita_precedente["nome"].ToString() + " giorno: " +
+                        Log.LogMessageToDb("Uscita giorno dopo: " + check_uscita_precedente["nome"].ToString() + " giorno: " +
                                                 check_uscita_precedente["giorno_da_sistemare"].ToString() + " uscita: " +
                                                 esci.Ora + " pausa: " + esci.Pausa);
                         MainWindow m = (MainWindow)Window.GetWindow(this);
@@ -82,7 +82,7 @@ namespace OrariDipendenti
                     {
                         MessageBox.Show(entrata_result);
                     }
-                    Log.LogMessageToFile("Entrata: " + nomecompleto + "  " + entra.timePicker_entra.Text);
+                    Log.LogMessageToDb("Entrata: " + nomecompleto + "  " + entra.timePicker_entra.Text);
                     MainWindow m = (MainWindow)Window.GetWindow(this);
                     m.aggiorna();
                 }
@@ -113,7 +113,7 @@ namespace OrariDipendenti
                     else //tutto ok, esco e faccio update della tabella
                     {
                         eus.add_new_uscita(esci.Ora, esci.Pausa, check_oggi["id"].ToString(), esci.tb_esci_note.Text);
-                        Log.LogMessageToFile("Uscita: " + nomecompleto + "  " + esci.Ora + " " + esci.Pausa + " " + esci.tb_esci_note.Text);
+                        Log.LogMessageToDb("Uscita: " + nomecompleto + "  " + esci.Ora + " " + esci.Pausa + " " + esci.tb_esci_note.Text);
                         MainWindow m = (MainWindow)Window.GetWindow(this);
                         m.aggiorna();
                     }

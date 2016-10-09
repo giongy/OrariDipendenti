@@ -261,7 +261,7 @@ namespace System.Data.SQLite
             {
                 query = query.Replace(p.ParameterName, p.Value.ToString());
             }
-            Log.LogMessageToFile("query: " + query);*/
+            */
             cmd.ExecuteNonQuery();
         }
 

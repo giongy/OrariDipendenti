@@ -19,7 +19,7 @@ namespace OrariDipendenti
                     TimeSpan ts = TimeSpan.FromMinutes(minuti);
                     Debug.WriteLine("ticks: " + new DateTime(ts.Ticks));
                     string formatted = string.Format(new DateTime(ts.Ticks).ToString("HH:mm"));
-                    Log.LogMessageToFile("hai provato ad inserire l'orario " + nome + ". Ore giornaliere: " + formatted);
+                    Log.LogMessageToDb("hai provato ad inserire l'orario " + nome + ". Ore giornaliere: " + formatted);
                     System.Diagnostics.Debug.WriteLine(formatted);
 
                     cmd.Connection = conn;
