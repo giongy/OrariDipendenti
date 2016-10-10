@@ -87,7 +87,7 @@ namespace OrariDipendenti
                     try
                     {
                         Log.LogMessageToDb("-*- provo a cancellare vecchi log ");
-                        sh.Execute("delete from log where id not in (select id from log order by id desc limit 10)");
+                        sh.Execute("delete from log where id not in (select id from log order by id desc limit 5000)");
 
                         sh.Commit();
                     }
