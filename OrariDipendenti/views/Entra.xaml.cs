@@ -47,7 +47,7 @@ namespace OrariDipendenti
 
         private DateTime RoundUp(DateTime dt, TimeSpan d)
         {
-            return new DateTime(((dt.Ticks + d.Ticks - 1) / d.Ticks) * d.Ticks);
+            return new DateTime(((dt.Ticks) / d.Ticks) * d.Ticks);
         }
     }
 }

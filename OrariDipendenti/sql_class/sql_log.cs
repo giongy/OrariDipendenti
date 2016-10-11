@@ -40,7 +40,7 @@ namespace OrariDipendenti
             }
         }
 
-        public DataTable select_log()
+        public DataTable select_log(string filtro)
         {
             using (SQLiteConnection conn = new SQLiteConnection("data source=" + initTable.path()))
             {
@@ -51,9 +51,15 @@ namespace OrariDipendenti
 
                     SQLiteHelper sh = new SQLiteHelper(cmd);
 
+                    string where = "";
+                    if (filtro != "")
+                    {
+                        where = " where log_entry like '%" + filtro + "%'";
+                    }
+
                     try
                     {
-                        string sql = "SELECT log_entry,log_type FROM log;  ";
+                        string sql = "SELECT log_entry,log_type FROM log" + where + ";  ";
                         Debug.WriteLine(sql);
                         DataTable dt = sh.Select(sql);
                         return dt;

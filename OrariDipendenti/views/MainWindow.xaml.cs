@@ -361,16 +361,22 @@ namespace OrariDipendenti
         {
             //Process.Start("IExplore.exe", Log.GetTempPath() + MyGlobals.log_file + ".txt");
             LogViewer lv = new LogViewer();
+            List<LogObject> llo = popola_log("");
+            lv.dg_Log.ItemsSource = llo;
+            lv.dg_Log.ScrollIntoView(llo[llo.Count - 1]);
+            lv.Show();
+        }
+
+        internal List<LogObject> popola_log(string filtro)
+        {
             sql_log sl = new sql_log();
-            DataTable d = sl.select_log();
+            DataTable d = sl.select_log(filtro);
             List<LogObject> entryList = new List<LogObject>();
             foreach (DataRow row in d.Rows)
             {
                 entryList.Add(new LogObject() { entry = row["log_entry"].ToString() });
             }
-            lv.dg_Log.ItemsSource = entryList;
-            lv.dg_Log.ScrollIntoView(entryList[entryList.Count - 1]);
-            lv.Show();
+            return entryList;
         }
 
         //************************************************************
