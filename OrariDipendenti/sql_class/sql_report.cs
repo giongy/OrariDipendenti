@@ -56,7 +56,7 @@ namespace OrariDipendenti
 
                     try
                     {
-                        DataTable dt = sh.Select("select distinct  strftime('%m', giorno) as mese, strftime('%Y', giorno) as anno from entrate_uscite order by giorno desc; ");
+                        DataTable dt = sh.Select("select distinct  strftime('%m', giorno) as mese, strftime('%Y', giorno) as anno from entrate_uscite order by giorno desc limit 36; ");
                         return dt;
                     }
                     catch (SQLiteException e)
@@ -84,7 +84,7 @@ namespace OrariDipendenti
 
                     try
                     {
-                        DataTable dt = sh.Select("select distinct strftime('%d', giorno) as day, strftime('%m', giorno) as mese, strftime('%Y', giorno) as anno from entrate_uscite order by giorno desc; ");
+                        DataTable dt = sh.Select("select distinct strftime('%d', giorno) as day, strftime('%m', giorno) as mese, strftime('%Y', giorno) as anno from entrate_uscite order by giorno desc limit 60; ");
                         return dt;
                     }
                     catch (SQLiteException e)

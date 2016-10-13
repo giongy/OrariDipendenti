@@ -223,7 +223,7 @@ namespace OrariDipendenti
                     try
                     {
                         Debug.WriteLine("dip checkoggi " + dip);
-                        string sql1 = "select id,nome_dipendente,time(entrata) as e,time(uscita) as u,time(ore_da_fare) as odf, note from entrate_uscite where id_dipendente=" + dip + " and giorno ='" + oggi + "'";
+                        string sql1 = "select id,nome_dipendente,time(entrata) as e,time(uscita) as u,time(pausa) as p,time(ore_da_fare) as odf, note from entrate_uscite where id_dipendente=" + dip + " and giorno ='" + oggi + "'";
                         DataTable dt1 = sh.Select(sql1);
                         if (dt1.Rows.Count > 0) //se trovi righe allora sei già entrato e puoi uscire
                         {
@@ -234,6 +234,7 @@ namespace OrariDipendenti
                                 check.Add("nome_dipendente", row["nome_dipendente"].ToString());
                                 check.Add("entrata", row["e"].ToString());
                                 check.Add("uscita", row["u"].ToString());
+                                check.Add("pausa", row["p"].ToString());
                                 check.Add("ore_da_fare", row["odf"].ToString());
                                 check.Add("note", row["note"].ToString());
                                 check.Add("alreadyenter", alreadyenter);

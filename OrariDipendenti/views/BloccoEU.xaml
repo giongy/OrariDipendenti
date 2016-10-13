@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:OrariDipendenti"
-             mc:Ignorable="d" Width="206.858" Height="180">
+             mc:Ignorable="d" Width="219.965" Height="195">
 
-    <Border BorderBrush="Black" BorderThickness="1" Padding="5" Margin="5">
+    <Border BorderBrush="Black" BorderThickness="1" Padding="2" Margin="5">
         <Grid x:Name="blocco">
             <Grid.Background>
                 <SolidColorBrush Color="WhiteSmoke" Opacity="0.67" />
@@ -16,23 +16,24 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="29" />
-                <RowDefinition Height="65" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="90" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock x:Name="blocco_nome" Grid.Row="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="TextBlock" FontSize="22" TextAlignment="Center" Height="29" VerticalAlignment="Top" FontFamily="Calibri" LineStackingStrategy="BlockLineHeight" FontWeight="Thin" />
+            <TextBlock x:Name="blocco_nome" Grid.Row="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="TextBlock" FontSize="22" TextAlignment="Center" FontFamily="Calibri" LineStackingStrategy="BlockLineHeight" FontWeight="Thin" Grid.RowSpan="2" Height="25" VerticalAlignment="Top" />
 
-            <Button x:Name="btn_entro" Grid.Row="1" Grid.Column="0" Click="button_Click_entra" HorizontalAlignment="Left" FontSize="18.667" FontWeight="ExtraLight" Margin="2,5" Cursor="Hand" Background="{x:Null}">
-                <StackPanel Orientation="Vertical" Height="49" Width="83">
-                    <TextBlock  FontSize="20" Height="29" VerticalAlignment="Center" Text="Entro" />
-                    <TextBlock x:Name="label_entrata" FontSize="12" Height="15" Text="entrata:"></TextBlock>
+            <Button x:Name="btn_entro" Grid.Row="1" Grid.Column="0" Click="button_Click_entra" HorizontalAlignment="Left" FontSize="18.667" FontWeight="ExtraLight" Margin="2,0,0,0" Cursor="Hand" Background="{x:Null}" Width="97" Padding="5,3,5,0">
+                <StackPanel Orientation="Vertical" Width="88" Height="86">
+                    <TextBlock  FontSize="24" Height="29" VerticalAlignment="Center" Text="Entro" Margin="0" FontWeight="ExtraLight" TextDecorations="{x:Null}" LineStackingStrategy="BlockLineHeight" />
+                    <TextBlock x:Name="label_entrata" FontSize="15" Height="22" Text="Entrata:"></TextBlock>
                 </StackPanel>
             </Button>
-            <Button x:Name="btn_esco" Grid.Row="1" Grid.Column="1" Click="button_Click_esci" FontSize="18.667" FontWeight="ExtraLight" Margin="2,5" Cursor="Hand" HorizontalAlignment="Right" Background="{x:Null}">
-                <StackPanel Orientation="Vertical" Height="49" Width="83">
-                    <TextBlock  FontSize="20" Height="29" VerticalAlignment="Center" Text="Esco" TextAlignment="Right" Margin="0,0,5,0" />
-                    <TextBlock x:Name="label_uscita" FontSize="12" Height="15" Text="Uscita:" TextAlignment="Right" Margin="0,0,5,0" />
+            <Button x:Name="btn_esco" Grid.Row="1" Grid.Column="1" Click="button_Click_esci" FontSize="18.667" FontWeight="ExtraLight" Margin="0,0,2,0" Cursor="Hand" HorizontalAlignment="Right" Background="{x:Null}" Width="97" Padding="5,0">
+                <StackPanel Orientation="Vertical" Width="88" Height="86">
+                    <TextBlock  FontSize="24" Height="29" VerticalAlignment="Center" TextAlignment="Right" Margin="1,2,1,1" FontWeight="ExtraLight" Text="Esco" Width="86" Padding="0,0,0,4" TextDecorations="{x:Null}" LineStackingStrategy="BlockLineHeight" />
+                    <TextBlock x:Name="label_uscita" FontSize="15" Height="22" TextAlignment="Right" Margin="0,2,2,1" Padding="0,0,0,4" ><Run Text="Uscita:" /></TextBlock>
+                    <TextBlock x:Name="label_pausa" FontSize="15" Height="22" Text="Pausa:" TextAlignment="Right" Padding="0,0,0,4" Margin="0,2,2,1" />
                 </StackPanel>
             </Button>
 
