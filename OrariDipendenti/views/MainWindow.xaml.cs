@@ -54,7 +54,7 @@ namespace OrariDipendenti
 
             label_version.Content = "Versione " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.95);
-            this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.95);
+            this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 1);
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             //nome db
@@ -146,13 +146,13 @@ namespace OrariDipendenti
                 beu.tb_blocco_note.Text = "Note: " + (string)h["note"];
                 if (!string.IsNullOrEmpty((string)h["entrata"]))
                 { // se per oggi ho una riga entrata non vuota allora metto label
-                    beu.label_entrata.Text = "entrata:" + h["entrata"].ToString().Substring(0, 5); //label con orario di entrata
+                    beu.label_entrata.Text = "Entrata " + h["entrata"].ToString().Substring(0, 5); //label con orario di entrata
                     beu.btn_entro.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0x94, 0xf3, 0x68)); //e faccio verde il bottone ##FF94F368
                     //anche uscita
                     if ((string)h["uscita"] != "00:00:00")  //se uscita diverso da 00:00:00 allora sei anche uscito
                     {
-                        beu.label_uscita.Text = "uscita:" + h["uscita"].ToString().Substring(0, 5); //label con orario di uscita
-                        beu.label_pausa.Text = "pausa:" + h["pausa"].ToString().Substring(0, 5); //label con orario di pausa
+                        beu.label_uscita.Text = "Uscita " + h["uscita"].ToString().Substring(0, 5); //label con orario di uscita
+                        beu.label_pausa.Text = "Pausa " + h["pausa"].ToString().Substring(0, 5); //label con orario di pausa
                         beu.btn_esco.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0xf7, 0x6e, 0x6e)); //e rosso #FFF76E6E
                     }
                 }

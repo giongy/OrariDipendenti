@@ -26,14 +26,14 @@
             <Button x:Name="btn_entro" Grid.Row="1" Grid.Column="0" Click="button_Click_entra" HorizontalAlignment="Left" FontSize="18.667" FontWeight="ExtraLight" Margin="2,0,0,0" Cursor="Hand" Background="{x:Null}" Width="97" Padding="5,3,5,0">
                 <StackPanel Orientation="Vertical" Width="88" Height="86">
                     <TextBlock  FontSize="24" Height="29" VerticalAlignment="Center" Text="Entro" Margin="0" FontWeight="ExtraLight" TextDecorations="{x:Null}" LineStackingStrategy="BlockLineHeight" />
-                    <TextBlock x:Name="label_entrata" FontSize="15" Height="22" Text="Entrata:"></TextBlock>
+                    <TextBlock x:Name="label_entrata" FontSize="15" Height="22" Text="Entrata" Margin="0,15,0,0" />
                 </StackPanel>
             </Button>
             <Button x:Name="btn_esco" Grid.Row="1" Grid.Column="1" Click="button_Click_esci" FontSize="18.667" FontWeight="ExtraLight" Margin="0,0,2,0" Cursor="Hand" HorizontalAlignment="Right" Background="{x:Null}" Width="97" Padding="5,0">
                 <StackPanel Orientation="Vertical" Width="88" Height="86">
                     <TextBlock  FontSize="24" Height="29" VerticalAlignment="Center" TextAlignment="Right" Margin="1,2,1,1" FontWeight="ExtraLight" Text="Esco" Width="86" Padding="0,0,0,4" TextDecorations="{x:Null}" LineStackingStrategy="BlockLineHeight" />
-                    <TextBlock x:Name="label_uscita" FontSize="15" Height="22" TextAlignment="Right" Margin="0,2,2,1" Padding="0,0,0,4" ><Run Text="Uscita:" /></TextBlock>
-                    <TextBlock x:Name="label_pausa" FontSize="15" Height="22" Text="Pausa:" TextAlignment="Right" Padding="0,0,0,4" Margin="0,2,2,1" />
+                    <TextBlock x:Name="label_uscita" FontSize="15" Height="22" TextAlignment="Right" Margin="0,2,2,1" Padding="0,0,0,4" ><Run Text="Uscita" /></TextBlock>
+                    <TextBlock x:Name="label_pausa" FontSize="15" Height="22" Text="Pausa" TextAlignment="Right" Padding="0,0,0,4" Margin="0,2,2,1" />
                 </StackPanel>
             </Button>
 
