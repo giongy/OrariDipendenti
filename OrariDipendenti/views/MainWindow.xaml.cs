@@ -365,7 +365,7 @@ namespace OrariDipendenti
             List<LogObject> llo = popola_log("");
             lv.dg_Log.ItemsSource = llo;
             lv.dg_Log.ScrollIntoView(llo[llo.Count - 1]);
-            lv.Show();
+            lv.ShowDialog();
         }
 
         internal List<LogObject> popola_log(string filtro)
