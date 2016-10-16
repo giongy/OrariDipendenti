@@ -407,7 +407,7 @@ namespace OrariDipendenti
             }
         }
 
-        public void delete_entrata_uscita(string id)
+        public string delete_entrata_uscita(string id)
         {
             using (SQLiteConnection conn = new SQLiteConnection("data source=" + initTable.path()))
             {
@@ -425,10 +425,12 @@ namespace OrariDipendenti
                         sh.Execute("delete from entrate_uscite where id='" + id + "'");
 
                         sh.Commit();
+                        return MyGlobals.ok;
                     }
-                    catch
+                    catch (SQLiteException e)
                     {
                         sh.Rollback();
+                        return e.Message;
                     }
                     finally
                     {

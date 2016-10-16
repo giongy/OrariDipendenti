@@ -817,7 +817,7 @@ namespace OrariDipendenti
             if (aeuw.ShowDialog() == true)
             {
                 sql_entrate_uscite eusql = new sql_entrate_uscite();
-                Log.LogMessageToDb("aggiunta manuale: " + aeuw.addpresenza_nome + " " + aeuw.addpresenza_giorno + " " + aeuw.addpresenza_entrata + " " + aeuw.addpresenza_uscita + " " + aeuw.addpresenza_pausa);
+                Log.LogMessageToDb("Admin aggiunta manuale: " + aeuw.addpresenza_nome + " " + aeuw.addpresenza_giorno + " " + aeuw.addpresenza_entrata + " " + aeuw.addpresenza_uscita + " " + aeuw.addpresenza_pausa);
                 string r = eusql.add_new_entrata_uscita(aeuw.addpresenza_id, aeuw.addpresenza_nome, aeuw.addpresenza_giorno, aeuw.addpresenza_entrata, aeuw.addpresenza_uscita, aeuw.addpresenza_pausa, aeuw.addpresenza_note);
 
                 button_cerca_mensile_Click(this, new RoutedEventArgs()); // REFRESH DELLA TABELLA REPORT, cercando di nuovo
