@@ -8,6 +8,7 @@ namespace OrariDipendenti
 {
     internal class LogObject
     {
+        public string entry_time { get; set; }
         public string entry { get; set; }
     }
 }

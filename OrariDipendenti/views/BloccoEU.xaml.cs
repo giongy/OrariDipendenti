@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Windows;
@@ -14,6 +16,7 @@ namespace OrariDipendenti
     public partial class BloccoEU : UserControl
     {
         private string nomecompleto;
+        private MetroWindow metroWindow = (Application.Current.MainWindow as MetroWindow);
 
         public string Nomecompleto
         {
@@ -89,7 +92,7 @@ namespace OrariDipendenti
             }
         }
 
-        private void button_Click_esci(object sender, RoutedEventArgs e)
+        private async void button_Click_esci(object sender, RoutedEventArgs e)
         {
             string oggi = System.DateTime.Today.ToString("yyyy-MM-dd");
             sql_entrate_uscite eus = new sql_entrate_uscite();
@@ -121,7 +124,9 @@ namespace OrariDipendenti
             }
             else //altrimenti ti dico che prima devi entrare per poter cliccare su esci
             {
-                MessageBox.Show("Prima devi entrare!");
+                
+                await metroWindow.ShowMessageAsync("Attenzione", "Prima devi entrare", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
+                //MessageBox.Show("Prima devi entrare!");
             }
         }
 

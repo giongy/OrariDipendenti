@@ -9,7 +9,7 @@
 		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 		mc:Ignorable="d"
 		Title="Asilo Regina Margherita - Gestione Orari Dipendenti" Height="623" Width="1370"
-					  BorderBrush="{DynamicResource AccentColorBrush}"
+
 					  BorderThickness="1"  Icon="../images/daisy2.ico" MinWidth="950" Closing="MetroWindow_Closing">
 
     <xctk:BusyIndicator x:Name="_busyIndicator" BusyContent="Sto creando il PDF, un attimo ancora... ;-)">
@@ -30,6 +30,7 @@
 
             <Menu x:Name="menu" Margin="0,-2,0,0">
                 <MenuItem Header="File" Background="{x:Null}">
+
                     <MenuItem x:Name="exit" Header="Exit"  Click="Exit" />
                 </MenuItem>
                 <MenuItem x:Name="menu_db" IsEnabled="False" Header="Gestione Database" Background="{x:Null}">

@@ -1,4 +1,6 @@
-﻿namespace OrariDipendenti
+﻿using MahApps.Metro.Controls.Dialogs;
+
+namespace OrariDipendenti
 {
     public static class MyGlobals
     {
@@ -50,6 +52,21 @@
             return "Ora stai usando il database: "
                       + Properties.Settings.Default.nomeDBAperto + " \r\nFAI ATTENZIONE, questo non è il database di lavoro, ma una copia personale o un backup. " +
                       "\r\nPer tornare ad usare il database di default usa la funzione -Ritorna al database di default-";
+        }
+
+        public static MetroDialogSettings myMetroSettings()
+        {
+            var mySettings = new MetroDialogSettings()
+            {
+                AffirmativeButtonText = "Va bene.",
+                NegativeButtonText = "Go away!",
+                FirstAuxiliaryButtonText = "Cancel",
+                AnimateShow = false,
+                AnimateHide = false,
+                 DialogTitleFontSize=45,
+                DialogMessageFontSize=30 
+            };
+            return mySettings;
         }
     }
 }

@@ -32,5 +32,8 @@
     <Setting Name="news" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="rescuepw" Type="System.String" Scope="User">
+      <Value Profile="(Default)">reset</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

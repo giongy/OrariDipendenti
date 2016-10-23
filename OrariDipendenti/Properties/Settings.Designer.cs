@@ -142,5 +142,17 @@ namespace OrariDipendenti.Properties {
                 this["news"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reset")]
+        public string rescuepw {
+            get {
+                return ((string)(this["rescuepw"]));
+            }
+            set {
+                this["rescuepw"] = value;
+            }
+        }
     }
 }

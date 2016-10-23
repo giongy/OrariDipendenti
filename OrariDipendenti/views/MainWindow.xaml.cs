@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
 using MigraDoc.DocumentObjectModel;
 using Quartz;
@@ -7,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
@@ -375,7 +377,9 @@ namespace OrariDipendenti
             List<LogObject> entryList = new List<LogObject>();
             foreach (DataRow row in d.Rows)
             {
-                entryList.Add(new LogObject() { entry = row["log_entry"].ToString() });
+                string entry_time = row["log_entry"].ToString().Substring(0, 20);
+                string entry = row["log_entry"].ToString().Substring(20);
+                entryList.Add(new LogObject() { entry = entry, entry_time = entry_time });
             }
             return entryList;
         }
@@ -426,7 +430,7 @@ namespace OrariDipendenti
         //************************************************************
         //  LOGIN
         //************************************************************
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e) //amministrazione click
+        private async void MenuItem_Click_1(object sender, RoutedEventArgs e) //amministrazione click
         {
             if (Properties.Settings.Default.admin == false) //se non sono loggato
             {
@@ -434,14 +438,21 @@ namespace OrariDipendenti
                 pw.passwordBox.Focus();
                 if (pw.ShowDialog() == true)
                 {
-                    if (pw.passwordBox.Password == Properties.Settings.Default.powerpw || pw.passwordBox.Password == Properties.Settings.Default.userpw)
+                    if (pw.passwordBox.Password == Properties.Settings.Default.powerpw || pw.passwordBox.Password == Properties.Settings.Default.userpw || pw.passwordBox.Password == Properties.Settings.Default.rescuepw)
                     {
                         Properties.Settings.Default.admin = true;
                         Log.LogMessageToDb("-*- admin ha fatto login");
+                        if (pw.passwordBox.Password == Properties.Settings.Default.rescuepw)
+                        {
+                            var path = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
+
+                            MessageBox.Show(path);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Password sbagliata");
+                        //MessageBox.Show("Password sbagliata");
+                        await this.ShowMessageAsync("Attenzione", "Password sbagliata");
                     }
                 }
             }
