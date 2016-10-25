@@ -459,6 +459,9 @@
     <Content Include="images\news_picture1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\sfondo-grande-dark.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\sfondo-grande.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

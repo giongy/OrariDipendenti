@@ -64,7 +64,24 @@ namespace OrariDipendenti
                 AnimateShow = false,
                 AnimateHide = false,
                  DialogTitleFontSize=45,
-                DialogMessageFontSize=30 
+                DialogMessageFontSize=30 ,
+                ColorScheme = MetroDialogColorScheme.Accented
+            };
+            return mySettings;
+        }
+
+        public static MetroDialogSettings myMetroSettingsSmall()
+        {
+            var mySettings = new MetroDialogSettings()
+            {
+                AffirmativeButtonText = "Va bene.",
+                NegativeButtonText = "Go away!",
+                FirstAuxiliaryButtonText = "Cancel",
+                AnimateShow = false,
+                AnimateHide = false,
+                DialogTitleFontSize = 30,
+                DialogMessageFontSize = 20,
+                ColorScheme = MetroDialogColorScheme.Accented
             };
             return mySettings;
         }

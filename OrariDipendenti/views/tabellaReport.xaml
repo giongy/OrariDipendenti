@@ -72,7 +72,9 @@
                 <DataGridTemplateColumn DisplayIndex="10" Width="40" MinWidth="40">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="Button_Click_report_modifica" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
+                            <Button Click="Button_Click_report_modifica" 
+                                    
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
 
                                 <Image Source="../images/edit.png" Width="16" Height="16" />
                             </Button>

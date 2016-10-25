@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
          xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:local="clr-namespace:OrariDipendenti"
+        xmlns:local="clr-namespace:OrariDipendenti" TitleCaps="False"
         mc:Ignorable="d"
         Title="Help" Height="552" Width="864" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Topmost="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
     <Grid>

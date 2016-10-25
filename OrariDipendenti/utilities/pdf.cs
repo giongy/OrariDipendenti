@@ -9,6 +9,7 @@ namespace OrariDipendenti
 {
     internal static class pdf
     {
+
         public static Document generaPdf(List<Report> tabella, string title, string bancaore)
         {
             Document document = new Document();

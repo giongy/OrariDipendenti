@@ -2,13 +2,14 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using MahApps.Metro.Controls;
 
 namespace OrariDipendenti
 {
     /// <summary>
     /// Logica di interazione per addDipendnente.xaml
     /// </summary>
-    public partial class addOrario : Window
+    public partial class addOrario : MetroWindow
     {
         private int _errors = 0;
         public orari or = new orari();

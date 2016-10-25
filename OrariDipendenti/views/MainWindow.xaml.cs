@@ -7,13 +7,10 @@ using Quartz.Impl;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -149,13 +146,13 @@ namespace OrariDipendenti
                 if (!string.IsNullOrEmpty((string)h["entrata"]))
                 { // se per oggi ho una riga entrata non vuota allora metto label
                     beu.label_entrata.Text = "Entrata " + h["entrata"].ToString().Substring(0, 5); //label con orario di entrata
-                    beu.btn_entro.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0x94, 0xf3, 0x68)); //e faccio verde il bottone ##FF94F368
+                    beu.btn_entro.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0xbd, 0xf0, 0xbf)); //e faccio verde il bottone #FFBDF0BF
                     //anche uscita
                     if ((string)h["uscita"] != "00:00:00")  //se uscita diverso da 00:00:00 allora sei anche uscito
                     {
                         beu.label_uscita.Text = "Uscita " + h["uscita"].ToString().Substring(0, 5); //label con orario di uscita
                         beu.label_pausa.Text = "Pausa " + h["pausa"].ToString().Substring(0, 5); //label con orario di pausa
-                        beu.btn_esco.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0xf7, 0x6e, 0x6e)); //e rosso #FFF76E6E
+                        beu.btn_esco.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0xff, 0xc4, 0xc4)); //e rosso ##FFFFC4C4
                     }
                 }
 
@@ -452,7 +449,8 @@ namespace OrariDipendenti
                     else
                     {
                         //MessageBox.Show("Password sbagliata");
-                        await this.ShowMessageAsync("Attenzione", "Password sbagliata");
+                        await this.ShowMessageAsync("Attenzione", "Password sbagliata",MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
+                        
                     }
                 }
             }
@@ -505,20 +503,23 @@ namespace OrariDipendenti
         //************************************************************
         //  CAMBIO PASSWORD
         //************************************************************
-        private void MenuItem_Click_changepw(object sender, RoutedEventArgs e) //password change
+        private async void MenuItem_Click_changepw(object sender, RoutedEventArgs e) //password change
         {
             password_change pwc = new password_change();
             pwc.textBox_password_now.Focus();
             if (Properties.Settings.Default.userpw == MyGlobals.initial_password)
             {
-                System.Windows.MessageBox.Show("Non hai ancora cambiato la password iniziale che è: " + MyGlobals.initial_password);
+                await this.ShowMessageAsync("Problema sicurezza", "Non hai ancora cambiato la password iniziale che è: " + MyGlobals.initial_password, MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
+                //System.Windows.MessageBox.Show("Non hai ancora cambiato la password iniziale che è: " + MyGlobals.initial_password);
                 pwc.textBox_password_now.Password = MyGlobals.initial_password;
             }
             if (pwc.ShowDialog() == true)
             {
                 Properties.Settings.Default.userpw = pwc.textBox_password_new2.Password;
                 Properties.Settings.Default.Save();
-                MessageBox.Show("Password cambiata con successo");
+
+                await this.ShowMessageAsync("Bene...", "Password cambiata con successo", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
+                //MessageBox.Show("Password cambiata con successo");
                 Log.LogMessageToDb("-*- cambio password");
             }
         }
@@ -619,12 +620,13 @@ namespace OrariDipendenti
         //************************************************************
         //  REPORT MENSILE - CERCA
         //************************************************************
-        public void button_cerca_mensile_Click(object sender, RoutedEventArgs e)
+        public async void button_cerca_mensile_Click(object sender, RoutedEventArgs e)
         {
             double totale_secondi_banca_ore = 0;
             if (String.IsNullOrEmpty((string)combo_lista_dipendenti.SelectedValue) || String.IsNullOrEmpty((string)comboBox_lista_mesi.SelectedValue))
             {
                 System.Windows.MessageBox.Show("seleziona dipendente e mese");
+                await this.ShowMessageAsync("Attenzione", "seleziona dipendente e mese", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
             }
             else
             {
@@ -838,56 +840,36 @@ namespace OrariDipendenti
         //******************** ****************************************
         //  PDF
         //************************************************************
-        private void button1_Click(object sender, RoutedEventArgs e) //stampa
+        private async void button1_Click(object sender, RoutedEventArgs e) //stampa
         {
             List<Report> reportlist = tabellamensile.dataGrid_report_mensile.ItemsSource as List<Report>;
             string nome = label_report_dipname.Text;
             string totbo = label_tot_bancaore.Content.ToString();
-
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += (o, ea) =>
+            Document d;
+            var controller = await this.ShowProgressAsync("Per favore attendi", "Sto creando il PDF, un attimo ancora...",false, MyGlobals.myMetroSettingsSmall());
+            await Task.Run(() =>
             {
-                Document d = pdf.generaPdf(reportlist, nome, totbo);
-                System.Windows.MessageBox.Show("Report pdf salvato in :" + System.IO.Path.Combine(initTable.initFolder(), MyGlobals.folder_report) + "\n\nApri la cartella report per trovarlo.");
-                //string ddl = MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToString(d);
-                //preview p = new preview();
-                //p.migra.Ddl = ddl;
-                //p.Show();
-            };
-            worker.RunWorkerCompleted += (o, ea) =>
-            {
-                _busyIndicator.IsBusy = false;
-            };
-            _busyIndicator.IsBusy = true;
-            worker.RunWorkerAsync();
+                 d = pdf.generaPdf(reportlist, nome, totbo);
+            });
+            await controller.CloseAsync();
+            await this.ShowMessageAsync("Finito", "Report pdf salvato in :" + Path.Combine(initTable.initFolder(), MyGlobals.folder_report) + "\n\nApri la cartella report per trovarlo.", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettingsSmall());
+            
         }
 
-        private void pdf_tutti(object sender, RoutedEventArgs e) //stampa
+        private async void pdf_tutti(object sender, RoutedEventArgs e) //stampa
         {
             List<Report> reportlist = tabellatutti.dataGrid_report_mensile.ItemsSource as List<Report>;
             string mese = comboBox_lista_mesi_tutti.SelectedValue.ToString();
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += (o, ea) =>
-            {
-                Document d = pdf_all.generaPdf(reportlist, mese);
-                System.Windows.MessageBox.Show("REPORT PER TUTTI I DIPENDENTI CREATO CORRETTAMENTE.\n\nApri la cartella report per trovarlo.");
-                //use the Dispatcher to delegate the listOfStrings collection back to the UI
-                // Dispatcher.Invoke((Action)(() => _listBox.ItemsSource = listOfString));
-            };
-            worker.RunWorkerCompleted += (o, ea) =>
-            {
-                _busyIndicator.IsBusy = false;
-            };
-            _busyIndicator.IsBusy = true;
-            worker.RunWorkerAsync();
 
-            /*
-        string ddl = MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToString(d);
-
-        preview p = new preview();
-        p.migra.Ddl = ddl;
-        p.Show();
-    */
+            Document d;
+            var controller = await this.ShowProgressAsync("Per favore attendi", "Sto creando il PDF, un attimo ancora...", false, MyGlobals.myMetroSettingsSmall());
+            await Task.Run(() =>
+            {
+                d = pdf_all.generaPdf(reportlist, mese);
+            });
+            await controller.CloseAsync();
+            await this.ShowMessageAsync("Finito", "REPORT PER TUTTI I DIPENDENTI CREATO CORRETTAMENTE.\n\nApri la cartella report per trovarlo.", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettingsSmall());
+            
         }
 
         //************************************************************
@@ -935,7 +917,7 @@ namespace OrariDipendenti
         //************************************************************
         // IMPORTA DATABASE
         //************************************************************
-        private void importaDb(object sender, RoutedEventArgs e)
+        private async void importaDb(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
             dialog.Filter = "sqlite files (*.sqlite)|*.sqlite";
@@ -952,7 +934,8 @@ namespace OrariDipendenti
                     System.IO.File.Copy(fname, destfile, true);
                     Properties.Settings.Default.nomeDBAperto = MyGlobals.default_db_aperto;
                     Properties.Settings.Default.Save();
-                    MessageBox.Show("Il database di default è stato sovrascritto correttamente da quello che hai scelto");
+                    await this.ShowMessageAsync("Bene...", "Il database di default è stato sovrascritto correttamente da quello che hai scelto", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
+                    // MessageBox.Show("Il database di default è stato sovrascritto correttamente da quello che hai scelto");
                     Log.LogMessageToDb("-*- database di default SOVRASCRITTO da: " + fname);
                 }
                 catch (IOException e1)
@@ -987,11 +970,12 @@ namespace OrariDipendenti
         //************************************************************
         // DEFAULT DATABASE
         //************************************************************
-        private void defaultDb(object sender, RoutedEventArgs e)
+        private async void defaultDb(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.nomeDBAperto = MyGlobals.default_db_aperto;
             Properties.Settings.Default.Save();
-            MessageBox.Show("Stai usando di nuovo il database di default, quello buono!");
+           // MessageBox.Show("Stai usando di nuovo il database di default, quello buono!");
+            await this.ShowMessageAsync("Bene...", "Stai usando di nuovo il database di default, quello buono!", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
             Log.LogMessageToDb("-*- database restored.");
 
             refresh_db();
@@ -1000,7 +984,7 @@ namespace OrariDipendenti
         //************************************************************
         // BACKUP DATABASE
         //************************************************************
-        private void backupDb(object sender, RoutedEventArgs e)
+        private async void backupDb(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "sqlite (*.sqlite)|*.sqlite";
@@ -1011,7 +995,8 @@ namespace OrariDipendenti
                 try
                 {
                     System.IO.File.Copy(sourceFile, saveFileDialog.FileName, true);
-                    System.Windows.MessageBox.Show("Backup eseguito con successo");
+                    //System.Windows.MessageBox.Show("Backup eseguito con successo");
+                    await this.ShowMessageAsync("Bene...", "Backup eseguito con successo", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
                     Log.LogMessageToDb("-*- backup manuale eseguito.");
                 }
                 catch

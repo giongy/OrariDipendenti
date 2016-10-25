@@ -36,7 +36,7 @@ namespace OrariDipendenti
             InitializeComponent();
         }
 
-        private void button_Click_entra(object sender, RoutedEventArgs e)
+        private async void button_Click_entra(object sender, RoutedEventArgs e)
         {
             sql_entrate_uscite eus = new sql_entrate_uscite();
             Hashtable check_uscita_precedente = eus.check_uscita_precedente(this.Tag.ToString()); //controllo se uscita precedente ok
@@ -55,7 +55,8 @@ namespace OrariDipendenti
                     if (seconds_uscita - seconds_entrata < 0) //se uscita è prima di entrata
                     {
                         //MessageBox.Show((seconds_uscita - seconds_entrata).ToString() + " Controlla l'ora di uscita: è precedente all'entrata");
-                        MessageBox.Show("Controlla l'ora di uscita: è precedente all'entrata");
+                        //MessageBox.Show("Controlla l'ora di uscita: è precedente all'entrata");
+                        await metroWindow.ShowMessageAsync("Qualcosa non mi torna", "Controlla l'ora di uscita: è precedente all'entrata", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
                     }
                     else //tutto ok, esco e faccio update della tabella
                     {
@@ -111,7 +112,8 @@ namespace OrariDipendenti
                     double seconds_uscita = TimeSpan.Parse(esci.Ora.ToString()).TotalSeconds;
                     if (seconds_uscita - seconds_entrata < 0) //se uscita è prima di entrata
                     {
-                        MessageBox.Show((seconds_uscita - seconds_entrata).ToString() + " Controlla l'ora di uscita: è precedente all'entrata");
+                        await metroWindow.ShowMessageAsync("Qualcosa non mi torna", "Controlla l'ora di uscita: è precedente all'entrata", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
+                        //MessageBox.Show((seconds_uscita - seconds_entrata).ToString() + " Controlla l'ora di uscita: è precedente all'entrata");
                     }
                     else //tutto ok, esco e faccio update della tabella
                     {
@@ -125,12 +127,12 @@ namespace OrariDipendenti
             else //altrimenti ti dico che prima devi entrare per poter cliccare su esci
             {
                 
-                await metroWindow.ShowMessageAsync("Attenzione", "Prima devi entrare", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
+                await metroWindow.ShowMessageAsync("Guarda meglio...", "Prima devi entrare", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
                 //MessageBox.Show("Prima devi entrare!");
             }
         }
 
-        private void blocco_nome_Copy_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private async void blocco_nome_Copy_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             var block = sender as TextBlock;
 
@@ -150,7 +152,8 @@ namespace OrariDipendenti
             }
             else
             {
-                MessageBox.Show("Per inserire delle note devi prima entrare");
+                await metroWindow.ShowMessageAsync("Guarda meglio...", "Per inserire delle note devi prima entrare", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
+                //MessageBox.Show("Per inserire delle note devi prima entrare");
             }
         }
 

@@ -8,8 +8,7 @@
 		xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
 		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 		mc:Ignorable="d"
-		Title="Asilo Regina Margherita - Gestione Orari Dipendenti" Height="623" Width="1370"
-
+		Title="Asilo Regina Margherita - Gestione Orari Dipendenti" Height="623" Width="1370" TitleCaps="False"
 					  BorderThickness="1"  Icon="../images/daisy2.ico" MinWidth="950" Closing="MetroWindow_Closing">
 
     <xctk:BusyIndicator x:Name="_busyIndicator" BusyContent="Sto creando il PDF, un attimo ancora... ;-)">
@@ -100,7 +99,9 @@
                             </DataGrid.Columns>
                         </DataGrid>
 
-                        <Button x:Name="button_addOrario" Click="add_orario_click" Content="Nuovo Orario" Margin="254,10,10,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.183,-0.656" Height="32" FontSize="16" Grid.Column="1" />
+                        <Button x:Name="button_addOrario" Click="add_orario_click" 
+                                Style="{DynamicResource SquareButtonStyle}"
+                                Content="Nuovo Orario" Margin="254,10,10,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.183,-0.656" Height="32" FontSize="16" Grid.Column="1" />
                         <TextBlock  Text="Orari" VerticalAlignment="Top" Width="450" FontSize="72" FontWeight="Thin" RenderTransformOrigin="0.538,0.274" Margin="10,10,259,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="84" HorizontalAlignment="Left" Cursor="Arrow" />
                     </Grid>
                 </TabItem>
@@ -152,7 +153,9 @@
                             </DataGrid.Columns>
                         </DataGrid>
 
-                        <Button x:Name="button_addDipendente" Click="add_dipendente_click" Content="Nuovo Dipendente" HorizontalAlignment="Right" Margin="0,10,10,0" Grid.Row="1" VerticalAlignment="Top" Width="244" RenderTransformOrigin="0.183,-0.656" Height="32" FontSize="16" Grid.Column="1" />
+                        <Button x:Name="button_addDipendente" 
+                                Style="{DynamicResource SquareButtonStyle}"
+                                Click="add_dipendente_click" Content="Nuovo Dipendente" HorizontalAlignment="Right" Margin="0,10,10,0" Grid.Row="1" VerticalAlignment="Top" Width="244" RenderTransformOrigin="0.183,-0.656" Height="32" FontSize="16" Grid.Column="1" />
                         <TextBlock x:Name="textBlock" Text="Dipendenti" VerticalAlignment="Top" Width="450" FontSize="72" FontWeight="Thin" RenderTransformOrigin="0.538,0.274" Margin="10,10,259,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="84" HorizontalAlignment="Left" Cursor="Arrow" />
                     </Grid>
                 </TabItem>
@@ -183,16 +186,18 @@
                                     <TextBlock  Text="Report Mensile" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="10,1,0,3" HorizontalAlignment="Left" Width="314" Cursor="Arrow" />
                                     <TextBlock x:Name="label_report_dipname" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="329,0,5,5" />
                                     <WrapPanel Orientation="Horizontal" Margin="0,0,10,0" Grid.Row="1" HorizontalAlignment="Right" Width="421" Height="36" VerticalAlignment="Top">
-                                        <Button x:Name="btn_aggiungi_presenza" Content="Aggiungi presenza" Click="add_presenza_click" Margin="5,0,5,1" FontSize="12" IsEnabled="False" FontFamily="Segoe UI" VerticalContentAlignment="Center" Padding="0,6" Height="30" Width="136.387" />
-                                        <Button x:Name="btn_stampa" Content="crea report(pdf)"  Click="button1_Click" Margin="5,0,5,1" FontSize="12" IsEnabled="False" FontFamily="Segoe UI"  Padding="0,6,5,3" Width="120.5" Height="30" />
-                                        <Button x:Name="btn_stampa_Copy" Content="Apri cartella report"  Click="button_Click_aprireportfolder" FontSize="10" FontFamily="Segoe UI" Margin="5,0,5,1" Height="30" />
+                                        <Button x:Name="btn_aggiungi_presenza" Style="{DynamicResource SquareButtonStyle}"  Content="Aggiungi presenza" Click="add_presenza_click" Margin="5,0,5,1" FontSize="12" IsEnabled="False" FontFamily="Segoe UI" VerticalContentAlignment="Center" Padding="0,6" Height="30" Width="136.387" />
+                                        <Button x:Name="btn_stampa" Style="{DynamicResource SquareButtonStyle}" Content="crea report(pdf)"  Click="button1_Click" Margin="5,0,5,1" FontSize="12" IsEnabled="False" FontFamily="Segoe UI"  Padding="0,6,5,3" Width="120.5" Height="30" />
+                                        <Button x:Name="btn_stampa_Copy" Style="{DynamicResource SquareButtonStyle}" Content="Apri cartella report"  Click="button_Click_aprireportfolder" FontSize="10" FontFamily="Segoe UI" Margin="5,0,5,1" Height="30" />
                                     </WrapPanel>
 
                                     <Label x:Name="label" Content="Dipendente:" Margin="10,2,0,45" Grid.Row="1" FontSize="12" Width="85" HorizontalAlignment="Left" FontWeight="Bold" />
                                     <ComboBox x:Name="combo_lista_dipendenti" SelectionChanged="combo_lista_dipendenti_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="100,1,0,46" Grid.Row="1" ScrollViewer.CanContentScroll="True" Width="156" FontFamily="Segoe UI" HorizontalAlignment="Left" />
                                     <Label x:Name="label1" Content="Mese:" Margin="259,2,0,45" Grid.Row="1" FontSize="12" Width="46" HorizontalAlignment="Left" FontWeight="Bold" />
                                     <ComboBox x:Name="comboBox_lista_mesi" SelectionChanged="comboBox_lista_mesi_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="305,0,0,0" Grid.Row="1" ScrollViewer.CanContentScroll="True" Width="89" FontFamily="Segoe UI" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" />
-                                    <Button x:Name="button" Content="apri" Click="button_cerca_mensile_Click" Margin="418,0,0,0" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" Height="30" VerticalAlignment="Top" />
+                                    <Button x:Name="button" Content="apri" 
+                                            Style="{DynamicResource SquareButtonStyle}"
+                                            Click="button_cerca_mensile_Click" Margin="418,0,0,0" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" Height="30" VerticalAlignment="Top" />
 
                                     <controls:tabellaReport Grid.Row="2" x:Name="tabellamensile" Margin="10,0" />
                                     <WrapPanel x:Name="wrap_banca_ore"  Orientation="Horizontal" Margin="0,36,166,10" Grid.Row="1" HorizontalAlignment="Right" Width="223">
@@ -227,7 +232,7 @@
                                     <Label Content="Giorno:" Margin="10,2,0,10" Grid.Row="1" FontSize="12" Width="85" HorizontalAlignment="Left" FontWeight="Bold" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
                                     <ComboBox x:Name="comboBox_lista_giorni" SelectionChanged="combo_lista_dipendenti_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="100,0,0,9" Grid.Row="1" ScrollViewer.CanContentScroll="True" Width="156" FontFamily="Segoe UI" HorizontalAlignment="Left" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
 
-                                    <Button  Content="Cerca" Click="button_cerca_giornaliero_Click" Margin="418,0,0,10" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                                    <Button  Content="Cerca" Style="{DynamicResource SquareButtonStyle}" Click="button_cerca_giornaliero_Click" Margin="418,0,0,10" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
 
                                     <controls:tabellaReport Grid.Row="2" x:Name="tabellagiorno" Margin="10,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
                                 </Grid>
@@ -257,13 +262,13 @@
 
                                     <WrapPanel Orientation="Horizontal" Margin="0,0,10,0" Grid.Row="1" HorizontalAlignment="Right" Width="421" Height="36" VerticalAlignment="Top">
 
-                                        <Button x:Name="btn_stampa_tutti" Content="crea report(pdf)"  Click="pdf_tutti" Margin="5,0,5,1" FontSize="12" IsEnabled="False" FontFamily="Segoe UI"  Padding="0,6,5,3" Width="120.5" Height="30" />
-                                        <Button x:Name="btn_stampa_tutti_Copy" Content="Apri cartella report"  Click="button_Click_aprireportfolder" FontSize="10" FontFamily="Segoe UI" Margin="5,0,5,1" Height="30" />
+                                        <Button x:Name="btn_stampa_tutti" Style="{DynamicResource SquareButtonStyle}" Content="crea report(pdf)"  Click="pdf_tutti" Margin="5,0,5,1" FontSize="12" IsEnabled="False" FontFamily="Segoe UI"  Padding="0,6,5,3" Width="120.5" Height="30" />
+                                        <Button x:Name="btn_stampa_tutti_Copy" Style="{DynamicResource SquareButtonStyle}" Content="Apri cartella report"  Click="button_Click_aprireportfolder" FontSize="10" FontFamily="Segoe UI" Margin="5,0,5,1" Height="30" />
                                     </WrapPanel>
 
                                     <Label  Content="Mese:" Margin="14,2,0,45" Grid.Row="1" FontSize="12" Width="46" HorizontalAlignment="Left" FontWeight="Bold" />
                                     <ComboBox x:Name="comboBox_lista_mesi_tutti" SelectionChanged="comboBox_lista_mesi_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="60,0,0,0" Grid.Row="1" ScrollViewer.CanContentScroll="True" Width="89" FontFamily="Segoe UI" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" />
-                                    <Button Content="Cerca" Click="button_cerca_mensile_tutti_Click" Margin="188,0,0,0" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" Height="30" VerticalAlignment="Top" />
+                                    <Button Content="Cerca" Style="{DynamicResource SquareButtonStyle}" Click="button_cerca_mensile_tutti_Click" Margin="188,0,0,0" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" Height="30" VerticalAlignment="Top" />
 
                                     <controls:tabellaReport Grid.Row="2" x:Name="tabellatutti" Margin="10,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
                                 </Grid>
