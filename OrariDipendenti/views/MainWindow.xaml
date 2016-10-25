@@ -9,13 +9,13 @@
 		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 		mc:Ignorable="d"
 		Title="Asilo Regina Margherita - Gestione Orari Dipendenti" Height="623" Width="1370" TitleCaps="False"
-					  BorderThickness="1"  Icon="../images/daisy2.ico" MinWidth="950" Closing="MetroWindow_Closing">
+					  BorderThickness="1"  Icon="../images/daisy2.ico" MinWidth="950" Closing="MetroWindow_Closing" Background="#FFFFFBFB">
 
-    <xctk:BusyIndicator x:Name="_busyIndicator" BusyContent="Sto creando il PDF, un attimo ancora... ;-)">
+    
         <Grid Name="mainGrid" Margin="0,5,0,0">
 
             <Grid.Background>
-                <ImageBrush ImageSource="../images/sfondo-grande.jpg" />
+                <ImageBrush ImageSource="../images/sfondo-grande.jpg" Opacity="0.7" />
             </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -303,5 +303,5 @@
                 </Image.Style>
             </Image>
         </Grid>
-    </xctk:BusyIndicator>
+    
 </Controls:MetroWindow>

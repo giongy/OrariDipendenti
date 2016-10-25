@@ -146,13 +146,16 @@ namespace OrariDipendenti
                 if (!string.IsNullOrEmpty((string)h["entrata"]))
                 { // se per oggi ho una riga entrata non vuota allora metto label
                     beu.label_entrata.Text = "Entrata " + h["entrata"].ToString().Substring(0, 5); //label con orario di entrata
-                    beu.btn_entro.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0xbd, 0xf0, 0xbf)); //e faccio verde il bottone #FFBDF0BF
+                    beu.btn_entro.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0x00, 0x87, 0x00)); //e faccio verde il bottone #FF008700
+                    beu.btn_entro.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0xe6, 0xe6, 0xe6)); //# FFCDCDCD
+
                     //anche uscita
                     if ((string)h["uscita"] != "00:00:00")  //se uscita diverso da 00:00:00 allora sei anche uscito
                     {
                         beu.label_uscita.Text = "Uscita " + h["uscita"].ToString().Substring(0, 5); //label con orario di uscita
                         beu.label_pausa.Text = "Pausa " + h["pausa"].ToString().Substring(0, 5); //label con orario di pausa
-                        beu.btn_esco.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0xff, 0xc4, 0xc4)); //e rosso ##FFFFC4C4
+                        beu.btn_esco.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0xb8, 0x00, 0x00)); //e rosso #FFB80000
+                        beu.btn_esco.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0xe6, 0xe6, 0xe6)); //# FFCDCDCD
                     }
                 }
 
