@@ -44,7 +44,7 @@ namespace OrariDipendenti
             if ((string)check_uscita_precedente["check"] == MyGlobals.exitmissed) //se non ancora uscito allora chiama uscita
             {
                 Esci esci = new Esci(check_uscita_precedente["giorno_da_sistemare"].ToString(), MyGlobals.exitmissednote(check_uscita_precedente["giorno_da_sistemare"].ToString()), check_uscita_precedente["note"].ToString());
-                esci.timePicker_esci.IsOpen = true;
+                //esci.timePicker_esci.IsOpen = true;
                 esci.timePicker_esci.StartTime = RoundUp(DateTime.Today, TimeSpan.FromMinutes(5)).TimeOfDay;
                 esci.timePicker_esci.Value = RoundUp(DateTime.Now, TimeSpan.FromMinutes(5));
 
@@ -72,7 +72,7 @@ namespace OrariDipendenti
             else //se uscita prec. ok allora chiamo ENTRA
             {
                 Entra entra = new Entra();
-                entra.timePicker_entra.IsOpen = true;
+                //entra.timePicker_entra.IsOpen = true;
                 //TimeSpan t = DateTime.Now.TimeOfDay;
 
                 entra.timePicker_entra.StartTime = RoundUp(DateTime.Today, TimeSpan.FromMinutes(5)).TimeOfDay;
@@ -103,7 +103,7 @@ namespace OrariDipendenti
             {
                 string arrivederci = "Arrivederci " + check_oggi["nome_dipendente"] + ", oggi sei entrato alle " + check_oggi["entrata"];
                 Esci esci = new Esci(oggi, arrivederci, check_oggi["note"].ToString());
-                esci.timePicker_esci.IsOpen = true;
+                //esci.timePicker_esci.IsOpen = true;
                 esci.timePicker_esci.StartTime = RoundUp(DateTime.Today, TimeSpan.FromMinutes(5)).TimeOfDay;
                 esci.timePicker_esci.Value = RoundUp(DateTime.Now, TimeSpan.FromMinutes(5));
                 if (esci.ShowDialog() == true)

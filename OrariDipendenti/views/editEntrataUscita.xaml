@@ -27,13 +27,13 @@
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="SemiBold" Content="Modifica presenza" FontSize="24" />
         <WrapPanel Grid.Row="9" Margin="0,0,22,10" Height="31" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="138" Grid.Column="1">
-            <Button IsDefault="True" x:Name="btnDialogOk" Command="Save" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0" Content="_Ok">
+            <Button IsDefault="True" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" x:Name="btnDialogOk" Command="Save" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0" Content="_Ok">
                 <Button.CommandBindings>
                     <CommandBinding Command="Save"
                     Executed="Save_Executed" CanExecute="Save_CanExecute" />
                 </Button.CommandBindings>
             </Button>
-            <Button IsCancel="True" MinWidth="60" Content="_Cancel" Margin="0" />
+            <Button IsCancel="True" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" MinWidth="60" Content="_Cancel" Margin="0" />
         </WrapPanel>
         <Label x:Name="tb_id" Content="id dipendente:" Margin="0,0,10,2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="11" Height="30" FontWeight="Bold" Width="101" Grid.Row="1" HorizontalContentAlignment="Right" />
         <Label x:Name="label_editpresenza_iddip" Grid.Column="1" Margin="10,0,0,0"   HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="11" Width="171" Height="23" Grid.Row="1" />

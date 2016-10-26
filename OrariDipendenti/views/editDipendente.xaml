@@ -23,10 +23,12 @@
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Light" Content="Modifica dipendente" FontSize="24" />
         <WrapPanel Grid.Row="6" Margin="0,0,26.667,10" d:LayoutOverrides="TopMargin, BottomMargin" Height="19.96" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="138" Grid.Column="1">
-            <Button IsDefault="True" x:Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0" Content="_Ok">
-
+            <Button IsDefault="True" Controls:ButtonHelper.PreserveTextCase="True" x:Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0" Content="_Ok">
+                <!--Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True"-->
                 <Button.Style>
-                    <Style TargetType="Button">
+
+                    <Style TargetType="Button"  >
+                        
                         <Setter Property="IsEnabled" Value="True" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ElementName=orario_dipendente_edit,Path=SelectedItem}" Value="{x:Null}">

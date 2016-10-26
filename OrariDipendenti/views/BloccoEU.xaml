@@ -7,7 +7,7 @@
              mc:Ignorable="d" Width="219.965" Height="195">
 
     <Border BorderBrush="Black" BorderThickness="1" Padding="2" Margin="5">
-        <Grid x:Name="blocco" OpacityMask="#FFDAD6D6" Background="#7FFFFBFB">
+        <Grid x:Name="blocco" OpacityMask="#FFDAD6D6" Background="#BFFFFBFB">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
