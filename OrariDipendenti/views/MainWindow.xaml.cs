@@ -146,8 +146,8 @@ namespace OrariDipendenti
                 if (!string.IsNullOrEmpty((string)h["entrata"]))
                 { // se per oggi ho una riga entrata non vuota allora metto label
                     beu.label_entrata.Text = "Entrata " + h["entrata"].ToString().Substring(0, 5); //label con orario di entrata
-                    beu.btn_entro.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0x00, 0x87, 0x00)); //e faccio verde il bottone #FF008700
-                    beu.btn_entro.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0xc1, 0xcf, 0xee)); //#FFC1CFEE
+                    beu.btn_entro.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0x06, 0x51, 0x00)); //e faccio verde il bottone #FF008700
+                    beu.btn_entro.Background = new SolidColorBrush(NewMethod());
 
                     //anche uscita
                     if ((string)h["uscita"] != "00:00:00")  //se uscita diverso da 00:00:00 allora sei anche uscito
@@ -155,12 +155,17 @@ namespace OrariDipendenti
                         beu.label_uscita.Text = "Uscita " + h["uscita"].ToString().Substring(0, 5); //label con orario di uscita
                         beu.label_pausa.Text = "Pausa " + h["pausa"].ToString().Substring(0, 5); //label con orario di pausa
                         beu.btn_esco.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0xb8, 0x00, 0x00)); //e rosso #FFB80000
-                        beu.btn_esco.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xff, 0xc1, 0xcf, 0xee)); //# FFCDCDCD
+                        beu.btn_esco.Background = new SolidColorBrush(NewMethod()); //# FFCDCDCD
                     }
                 }
 
                 mainWrap.Children.Add(beu); // finalmente aggiungo il blocco EU alla griglia principale
             }
+        }
+
+        private static System.Windows.Media.Color NewMethod()
+        {
+            return System.Windows.Media.Color.FromArgb(0xff, 0xce, 0xd0, 0xf1);//#FFCED0F1
         }
 
         #region orari
