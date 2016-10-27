@@ -7,7 +7,8 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" TitleCaps="False"
         xmlns:local="clr-namespace:OrariDipendenti"
         mc:Ignorable="d"
-        Title="Nuova Entrata/Uscita" Height="506" Width="423" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Nuova Entrata/Uscita" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
+                      Height="506" Width="423" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
     </Window.Resources>
     <Grid Margin="15,10,15,15">

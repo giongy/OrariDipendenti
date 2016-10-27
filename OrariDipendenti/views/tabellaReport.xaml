@@ -6,39 +6,19 @@
              xmlns:local="clr-namespace:OrariDipendenti"
              mc:Ignorable="d">
     <Grid>
-        <DataGrid x:Name="dataGrid_report_mensile"  CanUserAddRows="False" AlternatingRowBackground="#FFECE5E2" IsReadOnly="True" Margin="0,0,0,3"  AutoGenerateColumns="False" ColumnWidth="*" IsSynchronizedWithCurrentItem="False"  VerticalGridLinesBrush="#FFC5BDBD" Grid.RowSpan="2" ScrollViewer.CanContentScroll="True" BorderBrush="{x:Null}" Background="#00000000" FontSize="14" FontFamily="Calibri">
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver"
-                           Value="True">
-                            <Setter Property="Background"
-                               Value="#FFCEF1EE" />
-                        </Trigger>
-                        <Trigger Property="IsSelected"
-                           Value="True">
-                            <Setter Property="Background"
-                               Value="#FF425981" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.RowStyle>
-            <DataGrid.ColumnHeaderStyle>
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="ContentTemplate">
-                        <Setter.Value>
-                            <DataTemplate>
-                                <TextBlock TextWrapping="Wrap" Text="{Binding}"></TextBlock>
-                            </DataTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </DataGrid.ColumnHeaderStyle>
+        <DataGrid 
+            x:Name="dataGrid_report_mensile"  
+            CanUserAddRows="False"  IsReadOnly="True" Margin="0,0,0,3"  AutoGenerateColumns="False" 
+            ColumnWidth="*" IsSynchronizedWithCurrentItem="False"  
+            VerticalGridLinesBrush="#FFC5BDBD" Grid.RowSpan="2" 
+            ScrollViewer.CanContentScroll="True" BorderBrush="{x:Null}"  Background="White" Foreground="Black"
+            FontSize="14" FontFamily="Calibri">
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Giorno" Binding="{Binding report_giorno_dayofweek}" Width="140" />
                 <DataGridTextColumn Header="Nome" Binding="{Binding report_nome}"  Width="140" />
                 <DataGridTextColumn Header="Orario Giornaliero" Binding="{Binding report_orario}" Width="140" />
-                <DataGridTextColumn Header="Entrata" Binding="{Binding report_entrata}" Width="80" Foreground="#FF8EBBA4" FontWeight="Bold" />
+                <DataGridTextColumn Header="Entrata" Binding="{Binding report_entrata}" Width="80" Foreground="#FF13894D" FontWeight="Bold" />
                 <DataGridTextColumn Header="Uscita" Binding="{Binding report_uscita}" Width="80" Foreground="#FF831111" FontWeight="Bold">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}">
@@ -50,21 +30,9 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Note" Binding="{Binding report_note}" MaxWidth="5000" MinWidth="80">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip">
-                                <Setter.Value>
-                                    <ToolTip Width="250" Height="70">
-                                        <TextBlock Text="{Binding report_note}" TextWrapping="Wrap" />
-                                    </ToolTip>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="Note" Binding="{Binding report_note}" MaxWidth="5000" MinWidth="80"/>
                 <DataGridTextColumn Header="Ore a scuola" Binding="{Binding report_ore_dentro}" Width="110" />
-                <DataGridTextColumn Header="Pausa" Binding="{Binding report_pausa}" Width="80" Foreground="#FF383B85" FontWeight="Bold" />
+                <DataGridTextColumn Header="Pausa" Binding="{Binding report_pausa}" Width="80" Foreground="#FF161A7E" FontWeight="Bold" />
                 <DataGridTextColumn Header="Ore lavorate" Binding="{Binding report_ore_lavorate}" Width="110" />
                 <!--    <DataGridTextColumn Header="Approvato" Binding="{Binding report_verificato}" Width="80" /> -->
                 <DataGridTextColumn Header="Banca ore" Binding="{Binding report_bancaore}" Width="95" />

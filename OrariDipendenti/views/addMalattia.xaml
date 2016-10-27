@@ -7,7 +7,8 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" TitleCaps="False"
         xmlns:local="clr-namespace:OrariDipendenti"
         mc:Ignorable="d"
-        Title="Malattia/Ferie" Height="381" Width="343" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Malattia/Ferie" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" 
+                      Height="381" Width="343" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="15,10,15,15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
