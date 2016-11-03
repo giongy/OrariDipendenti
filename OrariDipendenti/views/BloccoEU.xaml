@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:OrariDipendenti"
-             mc:Ignorable="d" Width="219.965" Height="195">
+             mc:Ignorable="d" Width="220" Height="191">
 
     <Border BorderBrush="Black" BorderThickness="1" Padding="2" Margin="5">
         <Grid x:Name="blocco" OpacityMask="#FFDAD6D6" Background="#BFFFFBFB">
@@ -15,19 +15,20 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="27" />
                 <RowDefinition Height="90" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" MinHeight="64" />
+                
             </Grid.RowDefinitions>
 
-            <TextBlock x:Name="blocco_nome" Grid.Row="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="TextBlock" FontSize="22" TextAlignment="Center" FontFamily="Calibri" LineStackingStrategy="BlockLineHeight" FontWeight="Thin" Grid.RowSpan="2" Height="25" VerticalAlignment="Top" />
+            <TextBlock x:Name="blocco_nome" Grid.Row="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="TextBlock" FontSize="22" TextAlignment="Center" FontFamily="Calibri" LineStackingStrategy="BlockLineHeight" FontWeight="Thin" Height="25" VerticalAlignment="Top" />
 
             <Button x:Name="btn_entro" 
-                    Grid.Row="1" Grid.Column="0" Click="button_Click_entra" HorizontalAlignment="Left" FontSize="18.667" Margin="2,0,0,0" Cursor="Hand" Width="97" Padding="5,3,5,0" BorderThickness="1" Background="{x:Null}" BorderBrush="Black">
+                    Grid.Row="1" Grid.Column="0" Click="button_Click_entra" HorizontalAlignment="Left" FontSize="18.667" Margin="2,1,0,1" Cursor="Hand" Width="97" Padding="5,3,5,0" BorderThickness="1" Background="{x:Null}" BorderBrush="Black">
                 <StackPanel Orientation="Vertical" Width="87" Height="80">
                     <TextBlock Height="29" Name="txblk_entro" VerticalAlignment="Center" Text="Entro" Margin="0" LineStackingStrategy="BlockLineHeight" FontWeight="Normal"  FontSize="25"/>
                     <TextBlock x:Name="label_entrata" FontSize="14" Height="22" Text="Entrata" Margin="0,15,0,0" LineStackingStrategy="BlockLineHeight" FontWeight="Normal"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btn_esco" Grid.Row="1" Grid.Column="1" Click="button_Click_esci" FontSize="18.667" FontWeight="ExtraLight" Margin="0,0,2,0" Cursor="Hand" HorizontalAlignment="Right" Width="97" Padding="5,0" Background="{x:Null}" BorderThickness="1" Foreground="Black" BorderBrush="Black">
+            <Button x:Name="btn_esco" Grid.Row="1" Grid.Column="1" Click="button_Click_esci" FontSize="18.667" FontWeight="ExtraLight" Margin="0,1,2,1" Cursor="Hand" HorizontalAlignment="Right" Width="97" Padding="5,0" Background="{x:Null}" BorderThickness="1" Foreground="Black" BorderBrush="Black">
                 <StackPanel Orientation="Vertical" Width="88" Height="82">
                     <TextBlock  Height="29" Name="txblk_esco" VerticalAlignment="Center" TextAlignment="Right" Margin="1,2,1,1" Text="Esco" Width="86" Padding="0,0,3,4" LineStackingStrategy="BlockLineHeight" FontWeight="Normal"  FontSize="25"/>
                     <TextBlock x:Name="label_uscita" FontSize="14" Height="22" TextAlignment="Right" Margin="0,2,4,1" Padding="0,0,0,4" FontWeight="Normal" LineStackingStrategy="BlockLineHeight" ><Run Text="Uscita" /></TextBlock>
@@ -35,7 +36,8 @@
                 </StackPanel>
             </Button>
 
-            <TextBlock Name="tb_blocco_note" Grid.Row="2" Grid.ColumnSpan="2"  TextTrimming="WordEllipsis" MaxWidth="180" PreviewMouseDown="blocco_nome_Copy_PreviewMouseDown" TextWrapping="Wrap" Text="For most controls, you set it's height and widthgdhgdhdhgh to Autnt." FontSize="16" FontWeight="ExtraLight" Cursor="Hand" Height="64" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Margin="2,0,0,0">
+            <TextBlock Name="tb_blocco_note" Grid.Row="2" Grid.ColumnSpan="2"  
+                       TextTrimming="WordEllipsis" PreviewMouseDown="blocco_nome_Copy_PreviewMouseDown" TextWrapping="Wrap" Text="For most controls, you set it's height and " FontSize="16" FontWeight="ExtraLight" Cursor="Hand" VerticalAlignment="Top" Margin="2,0" Height="58" >
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Setter Property="ToolTip">
