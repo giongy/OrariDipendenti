@@ -232,5 +232,36 @@ namespace OrariDipendenti
                 }
             }
         }
+
+        public DataTable ricerca(string indip,string dal,string al)
+        {
+            
+            using (SQLiteConnection conn = new SQLiteConnection("data source=" + initTable.path()))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+
+                    try
+                    {
+                        string sql = "SELECT * FROM report1  where id_dipendente "+indip+ " and giorno >= '" + dal.Substring(0,10) + "' and giorno <= '" + al.Substring(0,10) + "' order by giorno,id_dipendente asc";
+                        Debug.WriteLine(sql);
+                        DataTable dt = sh.Select(sql);
+                        return dt;
+                    }
+                    catch (SQLiteException e)
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
     }
 }

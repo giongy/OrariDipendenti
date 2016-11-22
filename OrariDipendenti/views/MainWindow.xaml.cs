@@ -567,7 +567,13 @@ namespace OrariDipendenti
                 combo_lista_dip.Add(new listaDipendentiCombo() { Id = row["id"].ToString(), Name = row["nome"].ToString() + " " + row["cognome"].ToString() });
             }
             var combodipindex = combo_lista_dipendenti.SelectedIndex;
+
+            var combodipricercaitemselected = combo_lista_dipendenti_ricerca.SelectedItems;
+            
             combo_lista_dipendenti.ItemsSource = combo_lista_dip;
+            if(!combo_lista_dipendenti_ricerca.HasItems)
+            combo_lista_dipendenti_ricerca.ItemsSource = combo_lista_dip;
+
             if (combodipindex != -1)
             {
                 combo_lista_dipendenti.SelectedIndex = combodipindex;
@@ -576,6 +582,9 @@ namespace OrariDipendenti
             {
                 combo_lista_dipendenti.SelectedIndex = 0;
             }
+
+            
+           
 
             // MESI COMBO
             DataTable d1 = o.lista_mesi();
@@ -806,6 +815,79 @@ namespace OrariDipendenti
             }
         }
 
+        //************************************************************
+        //  REPORT RICERCA
+        //************************************************************
+        public async void button_cerca_Click(object sender, RoutedEventArgs e)
+        {
+            double totale_secondi_banca_ore = 0;
+            if (String.IsNullOrEmpty((string)combo_lista_dipendenti_ricerca.SelectedValue) || String.IsNullOrEmpty((string)ricerca_dal.SelectedDate.ToString()) || String.IsNullOrEmpty((string)ricerca_al.SelectedDate.ToString()))
+            {
+                //System.Windows.MessageBox.Show("seleziona dipendente e mese");
+                await this.ShowMessageAsync("Attenzione", "seleziona dipendenti e date", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
+            }
+            else
+            {
+                var temp = "in(";
+                var lastItem = combo_lista_dipendenti_ricerca.SelectedItems[combo_lista_dipendenti_ricerca.SelectedItems.Count - 1];
+                foreach (listaDipendentiCombo p in combo_lista_dipendenti_ricerca.SelectedItems)
+                {   
+                    if(p != lastItem)
+                        temp = temp + p.Id + ", ";
+                    else
+                        temp = temp + p.Id + ")";
+                }
+                
+                Debug.WriteLine(temp);
+                Debug.WriteLine(ricerca_dal.SelectedDate.ToString());
+                sql_report rs = new sql_report();
+
+                DataTable dt = rs.ricerca(temp, ricerca_dal.SelectedDate.ToString(), ricerca_al.SelectedDate.ToString());
+                List<Report> reportlist = new List<Report>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    string ore_lavorate = row["ore_lavorate"].ToString();
+                    string ore_dentro = row["ore_dentro"].ToString();
+                    double seconds_oredafare = TimeSpan.Parse(row["ore_da_fare"].ToString()).TotalSeconds;
+                    double seconds_orelavorate = TimeSpan.Parse(row["ore_lavorate"].ToString()).TotalSeconds;
+                    if (row["uscita"].ToString() == "00:00:00")
+                    {
+                        seconds_orelavorate = 0;
+                        ore_lavorate = "NO USCITA";
+                        ore_dentro = "No USCITA";
+                    }
+                    double seconds_bancaore = seconds_orelavorate - seconds_oredafare;
+                    totale_secondi_banca_ore = totale_secondi_banca_ore + seconds_bancaore;
+                    string bancaore = Utilities.ToHMString(TimeSpan.FromSeconds(seconds_bancaore));
+
+                    reportlist.Add(new Report()
+                    {
+                        report_giorno = row["giorno"].ToString(),
+                        report_giorno_dayofweek = row["giorno"].ToString() + " " + Utilities.giorno_della_settimana(row["day_of_week"].ToString()),
+                        report_nome = row["nome"].ToString(),
+                        report_id_dip = row["id_dipendente"].ToString(),
+                        report_orario = row["ore_da_fare"].ToString(),
+                        report_entrata = row["entrata"].ToString(),
+                        report_uscita = row["uscita"].ToString(),
+                        report_note = row["note"].ToString(),
+                        report_ore_dentro = ore_dentro,
+                        report_pausa = row["pausa"].ToString(),
+                        report_ore_lavorate = ore_lavorate,
+                        report_modificato = row["modificato"].ToString(),
+                        report_bancaore = bancaore,
+                        report_eu_id = row["eu_id"].ToString()
+                    });
+                }
+
+                tabella_ricerca.dataGrid_report_mensile.ItemsSource = reportlist;
+                //label_report_dipname.Text = combo_lista_dipendenti.Text + " " + comboBox_lista_mesi.SelectedValue.ToString();
+                //label_report_dipname.SetValue(FrameworkElement.TagProperty, combo_lista_dipendenti.Text); //IMPORTANTE: setto il nome
+                //combo_lista_dipendenti.SetValue(FrameworkElement.TagProperty, combo_lista_dipendenti.SelectedValue.ToString()); //IMPORTANTE: setto l'id dipendente nel tag del blocco
+
+                label_tot_bancaore_ricerca.Content = Utilities.ToHMString(TimeSpan.FromSeconds(totale_secondi_banca_ore)).Trim();
+            }
+        }
+
         private Report sommarioReport(double tot)
         {
             return new Report()
@@ -897,6 +979,8 @@ namespace OrariDipendenti
         {
             e.Handled = true;
         }
+
+        
 
         private void comboBox_lista_mesi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

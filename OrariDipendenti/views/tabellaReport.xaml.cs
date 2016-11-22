@@ -63,6 +63,8 @@ namespace OrariDipendenti
                 m.button_cerca_giornaliero_Click(this, new RoutedEventArgs()); // REFRESH DELLA TABELLA REPORT, cercando di nuovo
             if (m.tabitem_report_all.IsSelected)
                 m.button_cerca_mensile_tutti_Click(this, new RoutedEventArgs()); // REFRESH DELLA TABELLA REPORT, cercando di nuovo
+            if (m.tabitem_ricerca_libera.IsSelected)
+                m.button_cerca_Click(this, new RoutedEventArgs()); // REFRESH DELLA TABELLA REPORT, cercando di nuovo
         }
     }
 }

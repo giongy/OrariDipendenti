@@ -162,7 +162,8 @@
             <TabItem x:Name="tab_report" Header="Report" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="46,0,-46,0" Width="99" Cursor="Hand">
                 <Grid>
                     <TabControl Background="{x:Null}" SelectionChanged="TabControl_SelectionChanged_1" VerticalContentAlignment="Top">
-                        <TabItem x:Name="tabitem_report_mensile" Header="Report Mensile" Margin="281,-9,-289,9" FontSize="10" Cursor="Hand" RenderTransformOrigin="0.5,0.5">
+                        <TabItem x:Name="tabitem_report_mensile" Header="Report Mensile"  
+                                  Cursor="Hand" Margin="170,0,-170,0" >
                             <TabItem.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
@@ -206,38 +207,11 @@
                                 </WrapPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem x:Name="tabitem_report_giornaliero" Header="Report Giornaliero" Margin="230,-9,-235,8" RenderTransformOrigin="1.056,0.6" FontSize="8" Cursor="Hand">
-                            <TabItem.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
-                                    <SkewTransform />
-                                    <RotateTransform />
-                                    <TranslateTransform />
-                                </TransformGroup>
-                            </TabItem.RenderTransform>
-                            <Grid x:Name="grid_report_giornaliero" Margin="0,-20,0,0">
-                                <Grid.ColumnDefinitions>
 
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" MinHeight="58.203" />
-                                    <RowDefinition Height="Auto" MinHeight="37.96" />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
 
-                                <TextBlock  Text="Report del giorno" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="10,-8.331,0,12.331" HorizontalAlignment="Left" Width="314" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" VerticalAlignment="Top" />
-                                <TextBlock x:Name="label_reportgiorno_dipname" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="329,-7.666,5,12.666" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
 
-                                <Label Content="Giorno:" Margin="10,2,0,10" Grid.Row="1" FontSize="12" Width="85" HorizontalAlignment="Left" FontWeight="Bold" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-                                <ComboBox x:Name="comboBox_lista_giorni" SelectionChanged="combo_lista_dipendenti_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="100,0,0,9" Grid.Row="1" ScrollViewer.CanContentScroll="True" Width="156" FontFamily="Segoe UI" HorizontalAlignment="Left" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-
-                                <Button  Content="Cerca" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Click="button_cerca_giornaliero_Click" Margin="418,0,0,10" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-
-                                <controls:tabellaReport Grid.Row="2" x:Name="tabellagiorno" Margin="10,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-                            </Grid>
-                        </TabItem>
-                        <TabItem x:Name="tabitem_report_all" Header="Riepilogo" Margin="230,-9,-235,8" RenderTransformOrigin="1.056,0.6" FontSize="8" Cursor="Hand">
+                        <TabItem x:Name="tabitem_report_all" Header="Riepilogo" 
+                                   Cursor="Hand" Margin="170,0,-170,0">
                             <TabItem.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
@@ -266,11 +240,88 @@
                                     <Button x:Name="btn_stampa_tutti_Copy" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Content="Apri cartella report"  Click="button_Click_aprireportfolder" FontSize="12" FontFamily="Segoe UI" Margin="5,0,5,1" Height="30" />
                                 </WrapPanel>
 
-                                <Label  Content="Mese:" Margin="14,2,0,45" Grid.Row="1" FontSize="12" Width="46" HorizontalAlignment="Left" FontWeight="Bold" />
-                                <ComboBox x:Name="comboBox_lista_mesi_tutti" SelectionChanged="comboBox_lista_mesi_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="60,0,0,0" Grid.Row="1" ScrollViewer.CanContentScroll="True" Width="89" FontFamily="Segoe UI" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" />
-                                <Button Content="Cerca" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Click="button_cerca_mensile_tutti_Click" Margin="188,0,0,0" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" Height="30" VerticalAlignment="Top" />
+                                <Label  Content="Mese:" Margin="14,18,0,29" Grid.Row="1" FontSize="12" Width="46" HorizontalAlignment="Left" FontWeight="Bold" />
+                                <ComboBox x:Name="comboBox_lista_mesi_tutti" SelectionChanged="comboBox_lista_mesi_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="60,16,0,0" Grid.Row="1" ScrollViewer.CanContentScroll="True" Width="89" FontFamily="Segoe UI" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" />
+                                <Button Content="Cerca" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Click="button_cerca_mensile_tutti_Click" Margin="188,16,0,0" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" Height="30" VerticalAlignment="Top" />
 
                                 <controls:tabellaReport Grid.Row="2" x:Name="tabellatutti" Margin="10,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tabitem_ricerca_libera" Header="Ricerca" 
+                                 Cursor="Hand" Margin="168,-2,-172,0" >
+                            <TabItem.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
+                                    <SkewTransform />
+                                    <RotateTransform />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </TabItem.RenderTransform>
+
+                            <Grid x:Name="grid_ricerca" Margin="0,-20,0,0">
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="31*" />
+                                    <RowDefinition Height="Auto" MinHeight="75" />
+                                    <RowDefinition Height="187*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock  Text="Ricerca" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="10,1,0,3" HorizontalAlignment="Left" Width="314" Cursor="Arrow" />
+                                <TextBlock x:Name="label_ricerca_dipname" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="329,0,5,5" />
+
+                                <Label x:Name="label_ricerca" Content="Dipendente:" Margin="10,2,0,45" Grid.Row="1" FontSize="12" Width="85" HorizontalAlignment="Left" FontWeight="Bold" />
+                                <xctk:CheckComboBox x:Name="combo_lista_dipendenti_ricerca"  DisplayMemberPath="Name" SelectedValue="Id" SelectedItem="Name" Margin="100,1,0,46" Grid.Row="1" ScrollViewer.CanContentScroll="True" Width="294" FontFamily="Segoe UI" HorizontalAlignment="Left" />
+                                <Label x:Name="label1_ricerca" Content="Dal Giorno:" Margin="424,2,0,46" Grid.Row="1" FontSize="12" Width="80" HorizontalAlignment="Left" FontWeight="Bold" />
+                                <DatePicker x:Name="ricerca_dal"                                     
+                                     Focusable="True" KeyboardNavigation.TabNavigation="Continue"  HorizontalAlignment="Left" FontSize="11" Width="135" Margin="499,2,0,46" Grid.Row="1" />
+                                <Label x:Name="label1_ricerca_Copy" Content="Al Giorno:" Margin="647,3,0,45" Grid.Row="1" FontSize="12" Width="70" HorizontalAlignment="Left" FontWeight="Bold" />
+                                <DatePicker x:Name="ricerca_al"                                     
+                                    Focusable="True" KeyboardNavigation.TabNavigation="Continue"  HorizontalAlignment="Left" FontSize="11" Width="136" Margin="718,3,0,45" Grid.Row="1" />
+                                <Button x:Name="button_ricerca" Content="Cerca" 
+                                            Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True"
+                                            Click="button_cerca_Click" Margin="883,2,0,0" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" Height="30" VerticalAlignment="Top" />
+                                <WrapPanel x:Name="wrap_banca_ore_ricerca"  Orientation="Horizontal" Margin="0,36,166,10" Grid.Row="1" HorizontalAlignment="Right" Width="223">
+                                    <Label x:Name="label2_ricerca" Content="TOTALE BANCA ORE:" FontWeight="ExtraBold" FontSize="14" Background="#00000000" VerticalAlignment="Bottom" FontStretch="ExtraExpanded" />
+                                    <Label x:Name="label_tot_bancaore_ricerca" Content="00:00" FontWeight="ExtraBold" FontSize="14" Background="#00000000" VerticalAlignment="Bottom" FontStretch="ExtraExpanded" />
+                                </WrapPanel>
+
+                                <controls:tabellaReport Grid.Row="2" x:Name="tabella_ricerca" Margin="10,0" />
+
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tabitem_report_giornaliero" Visibility="Hidden"
+                                 Header="Report Giornaliero"  Cursor="Hand">
+                            <TabItem.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
+                                    <SkewTransform />
+                                    <RotateTransform />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </TabItem.RenderTransform>
+                            <Grid x:Name="grid_report_giornaliero" Margin="0,-20,0,0">
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" MinHeight="58.203" />
+                                    <RowDefinition Height="Auto" MinHeight="37.96" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock  Text="Report del giorno" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="10,-8.331,0,12.331" HorizontalAlignment="Left" Width="314" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" VerticalAlignment="Top" />
+                                <TextBlock x:Name="label_reportgiorno_dipname" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="329,-7.666,5,12.666" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+
+                                <Label Content="Giorno:" Margin="10,2,0,10" Grid.Row="1" FontSize="12" Width="85" HorizontalAlignment="Left" FontWeight="Bold" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                                <ComboBox x:Name="comboBox_lista_giorni" SelectionChanged="combo_lista_dipendenti_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="100,0,0,9" Grid.Row="1" ScrollViewer.CanContentScroll="True" Width="156" FontFamily="Segoe UI" HorizontalAlignment="Left" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+
+                                <Button  Content="Cerca" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Click="button_cerca_giornaliero_Click" Margin="418,0,0,10" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+
+                                <controls:tabellaReport Grid.Row="2" x:Name="tabellagiorno" Margin="10,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
                             </Grid>
                         </TabItem>
                     </TabControl>
