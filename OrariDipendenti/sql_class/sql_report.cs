@@ -263,5 +263,110 @@ namespace OrariDipendenti
                 }
             }
         }
+
+        public List<string> esporta(string dal, string al)
+        {
+
+            using (SQLiteConnection conn = new SQLiteConnection("data source=" + initTable.path()))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+
+                    try
+                    {
+                        string sql = "select id_dipendente,nome_dipendente,date(giorno),time(ore_da_fare),time(entrata),time(uscita),time(pausa),note,modificato " +
+                            "FROM entrate_uscite "+
+                            "where  giorno >= '" + dal.Substring(0, 10) + "' and giorno <= '" + al.Substring(0, 10) + "' order by giorno,id_dipendente asc";
+                        Debug.WriteLine(sql);
+                        List<string> lines = new List<string>();
+                        lines.Add("# esporto dati dal " + dal.Substring(0, 10) + " al " + al.Substring(0, 10));
+                        lines.Add("DELETE from entrate_uscite where giorno >= '"+ dal.Substring(0, 10) + "' and giorno <= '"+ al.Substring(0, 10) + "'");
+                        DataTable dt = sh.Select(sql);
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            string id_dip = row["id_dipendente"].ToString();
+                            string nome_dip = row["nome_dipendente"].ToString();
+                            string giorno = row["date(giorno)"].ToString();
+                            string ore_da_fare = row["time(ore_da_fare)"].ToString();
+                            string entrata = row["time(entrata)"].ToString();
+                            string uscita = row["time(uscita)"].ToString();
+                            string pausa = row["time(pausa)"].ToString();
+                            string note = row["note"].ToString().Replace("'","''").Trim();
+                            note = note.Replace(System.Environment.NewLine," ");
+                            string modificato = row["modificato"].ToString();
+
+                            lines.Add("insert INTO entrate_uscite(id_dipendente,nome_dipendente,giorno,ore_da_fare,entrata,uscita,pausa,note,modificato)"+ 
+                                "VALUES("+id_dip+",'"+nome_dip+"','"+giorno+"','"+ore_da_fare+"','"+entrata+"','"+uscita+"','"+pausa+"','"+note+"','"+modificato+"')");
+                            
+                        }
+                          
+                        return lines;
+                    }
+                    catch (SQLiteException e)
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+
+        public string importa(string file_name)
+        {
+            string result = "OK";
+            using (SQLiteConnection conn = new SQLiteConnection("data source=" + initTable.path()))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+
+                    sh.BeginTransaction();
+                    string line;
+                    try
+                    {
+                        // Read the file and display it line by line.  
+                        System.IO.StreamReader file = new System.IO.StreamReader(file_name);
+                        while ((line = file.ReadLine()) != null)
+                        {
+                            //System.Console.WriteLine(line);
+                            if (!line.StartsWith("#"))
+                            {
+                                sh.Execute(line);
+                                
+                            }
+                            
+
+                        }
+
+                        sh.Commit();
+                        file.Close();
+                        return result;
+                    }
+                    catch(SQLiteException e)
+                    {
+                        
+                        Console.Write("TRANSACTION: "+e.ResultCode + " - " + e.Message + " - " + e.ErrorCode);
+                        
+                        sh.Rollback();
+                        result = e.Message;
+                        return result;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
     }
 }

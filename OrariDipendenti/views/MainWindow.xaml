@@ -33,7 +33,8 @@
                 <MenuItem x:Name="exit" Header="Exit"  Click="Exit" />
             </MenuItem>
             <MenuItem x:Name="menu_db" IsEnabled="False" Header="Gestione Database" Background="{x:Null}">
-                <MenuItem x:Name="importa_db" Header="Importa(Sovrascrivi/Ripristina) Database"  Click="importaDb" />
+                <MenuItem x:Name="importa_db" Header="Importa(Sovrascrivi/Ripristina) intero Database"  Click="importaDb" />
+                <MenuItem x:Name="importa_dati" Header="Importa dati (*.dati) "  Click="importaDati" />
                 <Separator />
                 <MenuItem x:Name="nuovo_db" Header="Apri Database"  Click="apriDb" />
                 <MenuItem x:Name="default_Database" Header="Ritorna al database di default"  Click="defaultDb" />
@@ -234,7 +235,7 @@
                                 <TextBlock  Text="Riepilogo di tutti i dipendenti per il mese" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="10,5,0,0" HorizontalAlignment="Left" Width="724" VerticalAlignment="Top" />
                                 <TextBlock x:Name="label_reporttutti_dipname" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="329,-7.666,5,12.666" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
 
-                                <WrapPanel Orientation="Horizontal" Margin="0,0,10,0" Grid.Row="1" HorizontalAlignment="Right" Width="269" Height="36" VerticalAlignment="Top">
+                                <WrapPanel Orientation="Horizontal" Margin="0,0,10,0" Grid.Row="1" HorizontalAlignment="Right" Width="414" Height="36" VerticalAlignment="Top">
 
                                     <Button x:Name="btn_stampa_tutti" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Content="Crea report(pdf)"  Click="pdf_tutti" Margin="5,0,5,1" FontSize="12" IsEnabled="False" FontFamily="Segoe UI"  Padding="0,6,5,3" Width="120.5" Height="30" />
                                     <Button x:Name="btn_stampa_tutti_Copy" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Content="Apri cartella report"  Click="button_Click_aprireportfolder" FontSize="12" FontFamily="Segoe UI" Margin="5,0,5,1" Height="30" />
@@ -283,6 +284,7 @@
                                 <Button x:Name="button_ricerca" Content="Cerca" 
                                             Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True"
                                             Click="button_cerca_Click" Margin="883,2,0,0" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" Height="30" VerticalAlignment="Top" />
+                                <Button x:Name="btn_esporta_dati" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Content="Esporta dati"  Click="esporta_dati" Margin="1062,3,166,42" FontSize="12" IsEnabled="True" FontFamily="Segoe UI"  Padding="0,6,5,3" Width="120.5" Height="30" Grid.Row="1" />
                                 <WrapPanel x:Name="wrap_banca_ore_ricerca"  Orientation="Horizontal" Margin="0,36,166,10" Grid.Row="1" HorizontalAlignment="Right" Width="223">
                                     <Label x:Name="label2_ricerca" Content="TOTALE BANCA ORE:" FontWeight="ExtraBold" FontSize="14" Background="#00000000" VerticalAlignment="Bottom" FontStretch="ExtraExpanded" />
                                     <Label x:Name="label_tot_bancaore_ricerca" Content="00:00" FontWeight="ExtraBold" FontSize="14" Background="#00000000" VerticalAlignment="Bottom" FontStretch="ExtraExpanded" />

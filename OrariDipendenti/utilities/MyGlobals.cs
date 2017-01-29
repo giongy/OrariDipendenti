@@ -59,7 +59,7 @@ namespace OrariDipendenti
             var mySettings = new MetroDialogSettings()
             {
                 AffirmativeButtonText = "Va bene.",
-                NegativeButtonText = "Go away!",
+                NegativeButtonText = "Annulla",
                 FirstAuxiliaryButtonText = "Cancel",
                 AnimateShow = false,
                 AnimateHide = false,

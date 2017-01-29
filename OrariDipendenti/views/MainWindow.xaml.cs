@@ -812,6 +812,7 @@ namespace OrariDipendenti
                 //combo_lista_dipendenti.SetValue(FrameworkElement.TagProperty, combo_lista_dipendenti.SelectedValue.ToString()); //IMPORTANTE: setto l'id dipendente nel tag del blocco
                 //btn_aggiungi_presenza.IsEnabled = true;
                 btn_stampa_tutti.IsEnabled = true;
+                
             }
         }
 
@@ -963,6 +964,37 @@ namespace OrariDipendenti
         }
 
         //************************************************************
+        //  esporta dati
+        //************************************************************
+        private async void esporta_dati(object sender, RoutedEventArgs e) //apri folder log
+        {
+            if ( String.IsNullOrEmpty((string)ricerca_dal.SelectedDate.ToString()) || String.IsNullOrEmpty((string)ricerca_al.SelectedDate.ToString()))
+            {
+                //System.Windows.MessageBox.Show("seleziona dipendente e mese");
+                await this.ShowMessageAsync("Attenzione", "seleziona un intervallo di date da esportare, NON serve selezionare dipendenti", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
+            }
+            else
+            {
+                sql_report rs = new sql_report();
+                
+                List<string> datiDaEsportare = rs.esporta(ricerca_dal.SelectedDate.ToString(), ricerca_al.SelectedDate.ToString());
+                
+                SaveFileDialog saveFileDialog = new SaveFileDialog(); //scelgo il file del backup
+                saveFileDialog.Filter = "dati (*.dati)|*.dati";
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    
+                    System.IO.File.WriteAllLines(saveFileDialog.FileName, datiDaEsportare);
+
+                    await this.ShowMessageAsync("Bene..", "dati esportati con successo!", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
+
+                }
+            }
+                
+
+        }
+
+        //************************************************************
         //  apri report folder
         //************************************************************
         private void button_Click_aprireportfolder(object sender, RoutedEventArgs e) //apri folder log
@@ -1037,6 +1069,61 @@ namespace OrariDipendenti
 
                 refresh_db();
             }
+        }
+
+        //************************************************************
+        // IMPORTA DATI
+        //************************************************************
+        private async void importaDati(object sender, RoutedEventArgs e)
+        {
+            MessageDialogResult result = await this.ShowMessageAsync("Attenzione!", "Stai per mettere mano al database ed è sempre pericoloso. Prima di procedere fai una copia di backup così sei sicura di non perdere niente.", MessageDialogStyle.AffirmativeAndNegative, MyGlobals.myMetroSettings());
+            if (result == MessageDialogResult.Negative)
+            {
+                Console.WriteLine("No");
+            }
+            else
+            {
+                Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+                dialog.Filter = "sqlite files (*.dati)|*.dati";
+                dialog.Title = "Select a *.dati file";
+                if (dialog.ShowDialog() == true)
+                {
+                    string fname = dialog.FileName;
+                    string line;
+                    try
+                    {
+                        sql_report rs = new sql_report();
+
+                        string transaction = rs.importa(fname);
+                        if (transaction != "OK")
+                        {
+                            if (transaction.Contains("UNIQUE constraint failed"))
+                            {
+                                System.Windows.MessageBox.Show("Riga Doppia, chiamare il tecnico");
+                            }
+                            else
+                            {
+                                System.Windows.MessageBox.Show(transaction + "....CHIAMARE IL TECNICO");
+                            }
+                        }
+                        else
+                        {
+                            await this.ShowMessageAsync("Bene...", "I dati sono stati sovrascritti correttamente.", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
+                            // MessageBox.Show("Il database di default è stato sovrascritto correttamente da quello che hai scelto");
+                            Log.LogMessageToDb("-*- dati sovrascritti da: " + fname);
+                        }
+
+
+                    }
+                    catch (IOException e1)
+                    {
+                        MessageBox.Show("Si è verificato un errore: " + e1.Message);
+                    }
+
+                    refresh_db();
+                }
+            }
+            
         }
 
         //************************************************************
