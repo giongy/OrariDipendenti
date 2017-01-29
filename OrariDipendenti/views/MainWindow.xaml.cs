@@ -1076,7 +1076,7 @@ namespace OrariDipendenti
         //************************************************************
         private async void importaDati(object sender, RoutedEventArgs e)
         {
-            MessageDialogResult result = await this.ShowMessageAsync("Attenzione!", "Stai per mettere mano al database ed è sempre pericoloso. Prima di procedere fai una copia di backup così sei sicura di non perdere niente.", MessageDialogStyle.AffirmativeAndNegative, MyGlobals.myMetroSettings());
+            MessageDialogResult result = await this.ShowMessageAsync("Attenzione!", "Stai per mettere mano al database ed è sempre pericoloso. Prima di procedere fai una copia di backup così sei sicura di non perdere niente.", MessageDialogStyle.AffirmativeAndNegative, MyGlobals.myMetroSettings2());
             if (result == MessageDialogResult.Negative)
             {
                 Console.WriteLine("No");

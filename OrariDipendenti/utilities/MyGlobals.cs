@@ -69,6 +69,21 @@ namespace OrariDipendenti
             };
             return mySettings;
         }
+        public static MetroDialogSettings myMetroSettings2()
+        {
+            var mySettings = new MetroDialogSettings()
+            {
+                AffirmativeButtonText = "Ho capito, voglio importare i dati",
+                NegativeButtonText = "Annulla, meglio fare prima un backup",
+                FirstAuxiliaryButtonText = "Cancel",
+                AnimateShow = false,
+                AnimateHide = false,
+                DialogTitleFontSize = 45,
+                DialogMessageFontSize = 30,
+                ColorScheme = MetroDialogColorScheme.Accented
+            };
+            return mySettings;
+        }
 
         public static MetroDialogSettings myMetroSettingsSmall()
         {
