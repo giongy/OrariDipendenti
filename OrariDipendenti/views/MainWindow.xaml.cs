@@ -980,13 +980,16 @@ namespace OrariDipendenti
                 List<string> datiDaEsportare = rs.esporta(ricerca_dal.SelectedDate.ToString(), ricerca_al.SelectedDate.ToString());
                 
                 SaveFileDialog saveFileDialog = new SaveFileDialog(); //scelgo il file del backup
+                saveFileDialog.Title = "Salva i dati da esportare - Ti suggerisco questo nome";
                 saveFileDialog.Filter = "dati (*.dati)|*.dati";
+                saveFileDialog.FileName = "dal_" + ricerca_dal.SelectedDate.ToString().Substring(0, 10) + "_al_" + ricerca_al.SelectedDate.ToString().Substring(0, 10);
                 if (saveFileDialog.ShowDialog() == true)
                 {
                     
                     System.IO.File.WriteAllLines(saveFileDialog.FileName, datiDaEsportare);
 
-                    await this.ShowMessageAsync("Bene..", "dati esportati con successo!", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
+                    await this.ShowMessageAsync("Bene..", "Dati di TUTTI I DIPENDENTI dal "+ ricerca_dal.SelectedDate.ToString().Substring(0, 10) + " al "+ ricerca_al.SelectedDate.ToString().Substring(0, 10) + 
+                        " esportati con successo!\n\nTe lo ripeto, ho esportato TUTTI i dipendenti. La funzione ESPORTA filtra solo per le DATE scelte.", MessageDialogStyle.Affirmative, MyGlobals.myMetroSettings());
 
                 }
             }

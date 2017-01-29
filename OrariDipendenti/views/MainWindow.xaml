@@ -164,7 +164,7 @@
                 <Grid>
                     <TabControl Background="{x:Null}" SelectionChanged="TabControl_SelectionChanged_1" VerticalContentAlignment="Top">
                         <TabItem x:Name="tabitem_report_mensile" Header="Report Mensile"  
-                                  Cursor="Hand" Margin="170,0,-170,0" >
+                                  Cursor="Hand" Margin="162,0,-162,0" >
                             <TabItem.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
@@ -212,7 +212,7 @@
 
 
                         <TabItem x:Name="tabitem_report_all" Header="Riepilogo" 
-                                   Cursor="Hand" Margin="170,0,-170,0">
+                                   Cursor="Hand" Margin="155,0,-155,0">
                             <TabItem.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
@@ -248,8 +248,8 @@
                                 <controls:tabellaReport Grid.Row="2" x:Name="tabellatutti" Margin="10,0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
                             </Grid>
                         </TabItem>
-                        <TabItem x:Name="tabitem_ricerca_libera" Header="Ricerca" 
-                                 Cursor="Hand" Margin="168,-2,-172,0" >
+                        <TabItem x:Name="tabitem_ricerca_libera" Header="Ricerca libera/Esporta" 
+                                 Cursor="Hand" Margin="153,0,-157,0" >
                             <TabItem.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="0.8" ScaleX="0.8" />
@@ -270,21 +270,21 @@
                                     <RowDefinition Height="187*" />
                                 </Grid.RowDefinitions>
 
-                                <TextBlock  Text="Ricerca" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="10,1,0,3" HorizontalAlignment="Left" Width="314" Cursor="Arrow" />
+                                <TextBlock  Text="Ricerca libera e Esporta" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="10,1,0,3" HorizontalAlignment="Left" Width="424" Cursor="Arrow" />
                                 <TextBlock x:Name="label_ricerca_dipname" FontSize="40" RenderTransformOrigin="0.538,0.274" Margin="329,0,5,5" />
 
                                 <Label x:Name="label_ricerca" Content="Dipendente:" Margin="10,2,0,45" Grid.Row="1" FontSize="12" Width="85" HorizontalAlignment="Left" FontWeight="Bold" />
-                                <xctk:CheckComboBox x:Name="combo_lista_dipendenti_ricerca"  DisplayMemberPath="Name" SelectedValue="Id" SelectedItem="Name" Margin="100,1,0,46" Grid.Row="1" ScrollViewer.CanContentScroll="True" Width="294" FontFamily="Segoe UI" HorizontalAlignment="Left" />
-                                <Label x:Name="label1_ricerca" Content="Dal Giorno:" Margin="424,2,0,46" Grid.Row="1" FontSize="12" Width="80" HorizontalAlignment="Left" FontWeight="Bold" />
+                                <xctk:CheckComboBox x:Name="combo_lista_dipendenti_ricerca"  DisplayMemberPath="Name" SelectedValue="Id" SelectedItem="Name" Margin="100,1,0,46" Grid.Row="1" ScrollViewer.CanContentScroll="True" Width="280" FontFamily="Segoe UI" HorizontalAlignment="Left" />
+                                <Label x:Name="label1_ricerca" Content="Dal Giorno:" Margin="380,2,0,46" Grid.Row="1" FontSize="12" Width="80" HorizontalAlignment="Left" FontWeight="Bold" />
                                 <DatePicker x:Name="ricerca_dal"                                     
-                                     Focusable="True" KeyboardNavigation.TabNavigation="Continue"  HorizontalAlignment="Left" FontSize="11" Width="135" Margin="499,2,0,46" Grid.Row="1" />
-                                <Label x:Name="label1_ricerca_Copy" Content="Al Giorno:" Margin="647,3,0,45" Grid.Row="1" FontSize="12" Width="70" HorizontalAlignment="Left" FontWeight="Bold" />
+                                     Focusable="True" KeyboardNavigation.TabNavigation="Continue"  HorizontalAlignment="Left" FontSize="11" Width="135" Margin="455,2,0,46" Grid.Row="1" />
+                                <Label x:Name="label1_ricerca_Copy" Content="Al Giorno:" Margin="603,3,0,45" Grid.Row="1" FontSize="12" Width="70" HorizontalAlignment="Left" FontWeight="Bold" />
                                 <DatePicker x:Name="ricerca_al"                                     
-                                    Focusable="True" KeyboardNavigation.TabNavigation="Continue"  HorizontalAlignment="Left" FontSize="11" Width="136" Margin="718,3,0,45" Grid.Row="1" />
+                                    Focusable="True" KeyboardNavigation.TabNavigation="Continue"  HorizontalAlignment="Left" FontSize="11" Width="136" Margin="674,3,0,45" Grid.Row="1" />
                                 <Button x:Name="button_ricerca" Content="Cerca" 
                                             Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True"
-                                            Click="button_cerca_Click" Margin="883,2,0,0" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" Height="30" VerticalAlignment="Top" />
-                                <Button x:Name="btn_esporta_dati" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Content="Esporta dati"  Click="esporta_dati" Margin="1062,3,166,42" FontSize="12" IsEnabled="True" FontFamily="Segoe UI"  Padding="0,6,5,3" Width="120.5" Height="30" Grid.Row="1" />
+                                            Click="button_cerca_Click" Margin="833,2,0,0" Grid.Row="1" Width="136" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Foreground="Red" Height="30" VerticalAlignment="Top" />
+                                <Button x:Name="btn_esporta_dati" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Content="Esporta dati"  Click="esporta_dati" Margin="986,2,0,0" FontSize="12" IsEnabled="True" FontFamily="Segoe UI"  Padding="0,6,5,3" Width="120" Height="30" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" />
                                 <WrapPanel x:Name="wrap_banca_ore_ricerca"  Orientation="Horizontal" Margin="0,36,166,10" Grid.Row="1" HorizontalAlignment="Right" Width="223">
                                     <Label x:Name="label2_ricerca" Content="TOTALE BANCA ORE:" FontWeight="ExtraBold" FontSize="14" Background="#00000000" VerticalAlignment="Bottom" FontStretch="ExtraExpanded" />
                                     <Label x:Name="label_tot_bancaore_ricerca" Content="00:00" FontWeight="ExtraBold" FontSize="14" Background="#00000000" VerticalAlignment="Bottom" FontStretch="ExtraExpanded" />
