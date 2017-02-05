@@ -7,18 +7,18 @@
          xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d" TitleCaps="False"
-        Title="Esci" Height="356.996" Width="363.991" WindowStartupLocation="CenterScreen"
+        Title="Esci" Height="396.998" Width="363.991" WindowStartupLocation="CenterScreen"
                       BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" MinHeight="41" />
         </Grid.RowDefinitions>
-        <TextBlock TextWrapping="WrapWithOverflow" x:Name="label_esci"  Margin="10,10,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.654,-5.233" Height="107" FontSize="22" />
+        <TextBlock TextWrapping="WrapWithOverflow" x:Name="label_esci"  Margin="10,10,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.654,-5.233" Height="121" FontSize="22" Text="Attenzione: Il giorno &quot; + giorno + &quot; hai dimenticato di segnare l'uscita. Fallo adesso , poi potrai di nuovo entrare." />
         <xctk:TimePicker x:Name="timePicker_esci"
                          Validation.Error="Validation_Error"
                          Value="{Binding UpdateSourceTrigger=PropertyChanged, Path=uscita,ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
-                         Margin="104,122,101,0" UpdateValueOnEnterKey="True" StartTime="06:00"   MaxDropDownHeight="200" TimeInterval="0:5:0" FontSize="24" ShowButtonSpinner="False" Height="31" VerticalAlignment="Top" />
+                         Margin="104,136,101,0" UpdateValueOnEnterKey="True" StartTime="06:00"   MaxDropDownHeight="200" TimeInterval="0:5:0" FontSize="24" ShowButtonSpinner="False" Height="31" VerticalAlignment="Top" />
 
         <WrapPanel Grid.Row="1" Margin="0,0,27,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="138">
             <Button IsDefault="True" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" x:Name="btnDialogOk" Command="Save" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0" Content="_Ok">
@@ -29,14 +29,14 @@
             </Button>
             <Button IsCancel="True" Style="{DynamicResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" MinWidth="60" Content="_Cancel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" />
         </WrapPanel>
-        <Label x:Name="label" Content="Esco alle:" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Height="31" FontSize="14" Width="66" />
+        <Label x:Name="label" Content="Esco alle:" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" Height="31" FontSize="14" Width="66" />
         <xctk:TimePicker x:Name="timePicker_esci_pausa"
                          Validation.Error="Validation_Error"
                          Value="{Binding UpdateSourceTrigger=PropertyChanged, Path=pausa,ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
-                         Margin="104,171,101,0" UpdateValueOnEnterKey="True" MaxDropDownHeight="200" TimeInterval="0:05:0" FontSize="24" ShowButtonSpinner="False" Height="31" VerticalAlignment="Top" Text="00:00" />
-        <Label x:Name="label_Copy" Content="Ore di pausa:" HorizontalAlignment="Left" Margin="10,171,0,0" VerticalAlignment="Top" Height="31" FontSize="14" Width="91" />
+                         Margin="104,185,101,0" UpdateValueOnEnterKey="True" MaxDropDownHeight="200" TimeInterval="0:05:0" FontSize="24" ShowButtonSpinner="False" Height="31" VerticalAlignment="Top" Text="00:00" />
+        <Label x:Name="label_Copy" Content="Ore di pausa:" HorizontalAlignment="Left" Margin="10,185,0,0" VerticalAlignment="Top" Height="31" FontSize="14" Width="91" />
 
-        <TextBox Name="tb_esci_note" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="104,220,27,19" />
+        <TextBox Name="tb_esci_note" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="104,230,27,10" />
 
         <Label x:Name="label_Copy1" Content="Note:" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Height="31" FontSize="14" Width="44" />
     </Grid>
