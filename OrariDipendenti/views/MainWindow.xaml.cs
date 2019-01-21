@@ -7,6 +7,7 @@ using Quartz.Impl;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Data;
 using System.Diagnostics;
@@ -26,16 +27,20 @@ namespace OrariDipendenti
         private Popup codePopup;
 
         private DispatcherTimer timer = new DispatcherTimer();
-
-        private IScheduler sched = new StdSchedulerFactory().GetScheduler();
+        StdSchedulerFactory factory;
+        NameValueCollection props = new NameValueCollection
+                {
+                    { "quartz.serializer.type", "binary" }
+                };
+        private IScheduler sched;
 
         private ITrigger trigger = TriggerBuilder.Create().WithIdentity("aaa")
-                .WithCronSchedule("0 0 4 * * ?")
+                .WithCronSchedule("0 04 22 * * ?")
                 .Build();
 
         //   "0 0 4 * * ?"
         private ITrigger trigger_0100 = TriggerBuilder.Create().WithIdentity("refresh")
-                .WithCronSchedule("0 0 1 * * ?")
+                .WithCronSchedule("0 05 22 * * ?")
                 .Build();
 
         public MainWindow()
@@ -64,7 +69,7 @@ namespace OrariDipendenti
                 Properties.Settings.Default.UpgradeRequired = false;
                 Properties.Settings.Default.Save();
             }
-            provaquartz();
+            provaquartzAsync();
             check_db();
 
             tabella_orari();
@@ -82,15 +87,18 @@ namespace OrariDipendenti
             }
         }
 
-        private void provaquartz()
+
+        private async void provaquartzAsync()
         {
-            sched.Start();
+            factory = new StdSchedulerFactory(props);
+            sched = await factory.GetScheduler();
+            await sched.Start();
 
             IJobDetail job1 = JobBuilder.Create<job_refresh>()
                  .WithIdentity("myJob1")
                  .Build();
 
-            sched.ScheduleJob(job1, trigger_0100);
+            await sched.ScheduleJob(job1, trigger_0100);
         }
 
         private void refresh_db()

@@ -1,12 +1,15 @@
 ﻿using Quartz;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace OrariDipendenti
 {
     public class job_refresh : IJob
     {
-        public void Execute(IJobExecutionContext context)
+        
+
+        public async Task Execute(IJobExecutionContext context)
         {
             Debug.WriteLine("-----------------------------------------------------------------------refresh ");
             MainWindow.MyWindow.Dispatcher.Invoke(new Action(() =>

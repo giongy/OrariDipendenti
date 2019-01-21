@@ -1,12 +1,15 @@
 ﻿using Quartz;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace OrariDipendenti
 {
     public class job_bk : IJob
     {
-        public void Execute(IJobExecutionContext context)
+        
+
+         public async Task Execute(IJobExecutionContext context)
         {
             JobDataMap dataMap = context.JobDetail.JobDataMap;
 
@@ -23,6 +26,7 @@ namespace OrariDipendenti
             var next = context.NextFireTimeUtc;
             Log.LogMessageToDb("-*- backup automatico eseguito. il prossimo sarà: " + TimeZone.CurrentTimeZone.ToLocalTime(next.Value.DateTime));
             Debug.WriteLine("prossimo job_bk: " + TimeZone.CurrentTimeZone.ToLocalTime(next.Value.DateTime));
+            
         }
     }
 }
