@@ -8,7 +8,7 @@
 		xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
 		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 		mc:Ignorable="d"
-		Title="Asilo Regina Margherita - Gestione Orari Dipendenti" Height="623" Width="1370" TitleCaps="False"
+		Title="Asilo Angeli Custodi Quinzano - Gestione Orari Dipendenti" Height="623" Width="1370" TitleCaps="False"
 					  BorderThickness="1"  Icon="../images/daisy2.ico" MinWidth="950" Closing="MetroWindow_Closing" Background="#FFFFFBFB">
 
 
